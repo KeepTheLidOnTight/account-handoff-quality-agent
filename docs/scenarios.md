@@ -1,6 +1,6 @@
-# Grateful Dead-themed demo scenarios
+# Demo scenarios
 
-Every company, person, address, domain, deal, and note in these datasets is fictional. The theme uses playful names, not real band biographies, lyrics, customers, or personal data. IDs are mock relationship keys; these fixtures are not represented as Salesforce-import-ready. The `.example` domain is reserved for examples.
+Every company, person, address, domain, deal, and note in these datasets is fictional. No real customer records or personal data are included. IDs are mock relationship keys; these fixtures are not represented as Salesforce-import-ready. The `.example` domain is reserved for examples.
 
 Each folder contains a complete, isolated set of the five CSVs. IDs intentionally repeat between folders so a single changed condition is easy to compare. Do not combine the folders into one input directory.
 

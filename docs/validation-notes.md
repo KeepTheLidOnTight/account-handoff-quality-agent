@@ -19,7 +19,7 @@ receiving team before real use.
 - **27 automated CLI tests passed**, including parameterized cases for
   placeholders, missing columns, duplicate IDs, broken references, selection,
   readiness, source preservation, and exact attribution of stakeholder issues.
-- Default themed fixture: **Blocked**, with the three intended core gaps.
+- Default fixture: **Blocked**, with the three intended core gaps.
 - Complete fixture: structured baseline **Ready**.
 - Missing-next-step fixture: **Needs Review**, even though notes contain an action.
 - Conflicting-notes fixture: structured baseline **Ready**, with both conflicting
@@ -30,8 +30,8 @@ receiving team before real use.
   complete export as **Ready** and the conflicting export as **Needs Review**,
   citing the stale CRM timeline and the explicit rescheduling note.
 
-All named accounts, contacts, deals, and notes are fictional and Grateful Dead
-themed. Tests use disposable input copies. The revised project does not change
+All named accounts, contacts, deals, and notes are fictional.
+Tests use disposable input copies. The revised project does not change
 source records during an assessment.
 
 ## What these checks do not prove

@@ -1,9 +1,9 @@
 ---
-name: account-handoff-quality-agent
+name: baton
 description: Assess a Closed Won sales-to-post-sale handoff using Salesforce-style CSV exports and sales notes. Identify missing information, reconcile conflicting evidence, and produce an attributable handoff brief without changing CRM data.
 ---
 
-# Account Handoff Quality Agent
+# Baton
 
 ## Goal
 
@@ -93,4 +93,4 @@ Anything labeled `Inference` must be phrased as a possibility, not a fact. Label
 
 ## Demo and Verification
 
-The bundled records are fictional, Grateful Dead themed examples. Default data demonstrates an incomplete handoff. See [scenario guide](docs/scenarios.md) for complete, review, conflicting-evidence, and invalid-input examples. The theme does not change the business rules. Run regression checks with `python3 -B -m unittest discover -s tests -v`.
+The bundled records are fictional examples. Default data demonstrates an incomplete handoff. See [scenario guide](docs/scenarios.md) for complete, review, conflicting-evidence, and invalid-input examples. Run regression checks with `python3 -B -m unittest discover -s tests -v`.

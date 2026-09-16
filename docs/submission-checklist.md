@@ -8,7 +8,7 @@ separates prepared materials from actions still needed before submission.
 | --- | --- | --- |
 | Working agent skill with YAML frontmatter | Done | [SKILL.md](../SKILL.md) and [validator](../scripts/analyze_handoff.py). |
 | At least one external data source | Done | Five CSV exports in `data/`. The assignment explicitly accepts structured files and mock data. |
-| Public GitHub repository | Done | [Account Handoff Quality Agent](https://github.com/KeepTheLidOnTight/account-handoff-quality-agent) contains the skill, validator, fictional data, examples, and demo materials. |
+| Public GitHub repository | Done | [Baton](https://github.com/KeepTheLidOnTight/baton) contains the skill, validator, fictional data, examples, and demo materials. |
 | Short README with setup and run instructions | Done | [README](../README.md). |
 | Clear GTM problem and business impact | Prepared | [One-pager](one-pager.md) explains the handoff problem and intended benefit. Savings have not been measured. |
 | Use AI tooling and explain how it helped | Done and documented | [Validation notes](validation-notes.md) and [interview prep](interview-prep.md) explain the AI-assisted build and review. |

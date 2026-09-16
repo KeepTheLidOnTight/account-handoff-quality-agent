@@ -1,4 +1,4 @@
-# Account Handoff Quality Agent
+# Baton
 
 A practical check before sales hands a deal to implementation.
 
@@ -28,4 +28,4 @@ I used AI to draft the skill, validator, and fictional data, then asked it to re
 
 I would agree on the handoff policy with sales and implementation, add read-only CRM access with least-privilege permissions, and limit who can see or retain customer data. For reliability, I would monitor failed runs, validate export freshness, and make retries safe. At scale, I would fetch only the relevant records and handle API limits. For accuracy, I would evaluate labeled real-world cases, review contradictions with a person, and track missed gaps and false alarms. Any future writeback would need human approval and an audit trail.
 
-*Demo data is entirely fictional and Grateful Dead themed. It contains no real customer records, band biographies, or lyrics.*
+*Demo data is entirely fictional. It contains no real customer records or personal data.*

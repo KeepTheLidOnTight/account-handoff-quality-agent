@@ -1,4 +1,4 @@
-# Account Handoff Quality Agent
+# Baton
 
 A deal can be Closed Won and still be a messy handoff. The CRM has a few blank
 fields, the rollout plan is buried in call notes, and the implementation team
@@ -8,8 +8,8 @@ I built this skill to review that information and give the receiving team a
 brief they can work from: customer goals, stakeholders, commitments, missing
 details, and questions to resolve.
 
-The demo customer is **Terrapin Touring Co.** All the data is fictional and
-Grateful Dead themed. I used Salesforce-style CSVs so the demo can run without
+The demo customer is **Terrapin Touring Co.** All the data is fictional.
+I used Salesforce-style CSVs so the demo can run without
 setting up a Salesforce org.
 
 ## Try it

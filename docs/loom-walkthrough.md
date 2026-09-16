@@ -41,7 +41,7 @@ available on screen. Don't present a saved assessment as a live model run.
 
 **Show:** the summary slide.
 
-I built an account handoff quality skill for the transition from sales to
+I built Baton, a skill for the transition from sales to
 implementation or customer success. The problem is that the receiving team can
 have a closed deal without a clear picture of what was promised or what's still
 missing. This reviews CRM records and sales notes together and produces a brief

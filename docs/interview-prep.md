@@ -6,7 +6,7 @@ personal experience only if it is something you actually did.
 
 ## Your 30-second introduction
 
-I built an account handoff quality skill for the point where a deal moves from
+I built Baton, a skill for the point where a deal moves from
 sales to implementation or customer success. It reads CRM-style records and
 sales notes, checks what's missing, and gives the receiving team a brief with
 the context and questions they need before kickoff. Python handles the record
