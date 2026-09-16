@@ -1,0 +1,172 @@
+{
+  "opportunity_id": "0065g00003OPP001AAH",
+  "opportunity_name": "Terrapin Touring - Wall of Sound Security",
+  "handoff_readiness": "Ready",
+  "readiness_scope": "structured_checks_only",
+  "readiness_reasons": [],
+  "missing_structured_fields": [],
+  "issues": [],
+  "opportunity": {
+    "Id": "0065g00003OPP001AAH",
+    "AccountId": "0015g00002ABCDeAAH",
+    "Name": "Terrapin Touring - Wall of Sound Security",
+    "StageName": "Closed Won",
+    "Amount": "185000",
+    "CloseDate": "2026-09-10",
+    "OwnerId": "0055g00000OWNERAAR",
+    "Type": "New Customer",
+    "LeadSource": "Outbound",
+    "NextStep": "Casey Jones to schedule kickoff by 2026-09-17 and send the identity-team configuration request by 2026-09-18.",
+    "Description": "Wall of Sound security platform purchase following discovery and technical validation.",
+    "Probability": "100",
+    "ForecastCategoryName": "Closed",
+    "Primary_Business_Problem__c": "Security teams use inconsistent workflows across six venues and leadership lacks consolidated visibility.",
+    "Executive_Sponsor__c": "Scarlet Begonia",
+    "Technical_Owner__c": "Casey Jones",
+    "Implementation_Timeline__c": "Agreed 2026-09-10: identity-team notice by 2026-09-18; SSO validation 2026-10-02; corporate pilot starts 2026-10-05; venue rollout starts 2026-11-02 and completes 2026-11-30.",
+    "Success_Criteria__c": "By 2026-11-30, all six venues report to one dashboard and at least 95% of priority alerts appear within 15 minutes; by 2026-12-18, mean investigation time is at most 42 minutes against the agreed 60-minute baseline.",
+    "Handoff_Status__c": "Pending"
+  },
+  "account": {
+    "Id": "0015g00002ABCDeAAH",
+    "Name": "Terrapin Touring Co.",
+    "Website": "https://terrapintouring.example",
+    "Industry": "Entertainment",
+    "Type": "Customer",
+    "BillingCity": "Chicago",
+    "BillingState": "Illinois",
+    "BillingCountry": "United States",
+    "NumberOfEmployees": "2400",
+    "AnnualRevenue": "485000000",
+    "OwnerId": "0055g00000OWNERAAR",
+    "Customer_Goals__c": "Standardize security operations across six acquired venues and improve executive reporting.",
+    "Implementation_Notes__c": "Corporate pilot before six-venue expansion. Casey Jones owns the technical rollout. Identity-team notice is due 2026-09-18, allowing two weeks before SSO validation on 2026-10-02. SSO must pass before broad rollout."
+  },
+  "stakeholders": [
+    {
+      "contact_id": "0035g00004CON001AAH",
+      "role_id": "00K5g00001OCR001AAH",
+      "name": "Scarlet Begonia",
+      "title": "VP, Information Security",
+      "role": "Decision Maker",
+      "is_primary": true,
+      "contact": {
+        "Id": "0035g00004CON001AAH",
+        "AccountId": "0015g00002ABCDeAAH",
+        "FirstName": "Scarlet",
+        "LastName": "Begonia",
+        "Title": "VP, Information Security",
+        "Department": "Information Security",
+        "Email": "scarlet.begonia@terrapintouring.example",
+        "Phone": "",
+        "OwnerId": "0055g00000OWNERAAR"
+      },
+      "opportunity_contact_role": {
+        "Id": "00K5g00001OCR001AAH",
+        "OpportunityId": "0065g00003OPP001AAH",
+        "ContactId": "0035g00004CON001AAH",
+        "Role": "Decision Maker",
+        "IsPrimary": "TRUE"
+      }
+    },
+    {
+      "contact_id": "0035g00004CON002AAH",
+      "role_id": "00K5g00001OCR002AAH",
+      "name": "Casey Jones",
+      "title": "Director, Security Engineering",
+      "role": "Technical Buyer",
+      "is_primary": false,
+      "contact": {
+        "Id": "0035g00004CON002AAH",
+        "AccountId": "0015g00002ABCDeAAH",
+        "FirstName": "Casey",
+        "LastName": "Jones",
+        "Title": "Director, Security Engineering",
+        "Department": "Information Security",
+        "Email": "casey.jones@terrapintouring.example",
+        "Phone": "",
+        "OwnerId": "0055g00000OWNERAAR"
+      },
+      "opportunity_contact_role": {
+        "Id": "00K5g00001OCR002AAH",
+        "OpportunityId": "0065g00003OPP001AAH",
+        "ContactId": "0035g00004CON002AAH",
+        "Role": "Technical Buyer",
+        "IsPrimary": "FALSE"
+      }
+    },
+    {
+      "contact_id": "0035g00004CON003AAH",
+      "role_id": "00K5g00001OCR003AAH",
+      "name": "Jack Straw",
+      "title": "Procurement Manager",
+      "role": "Procurement",
+      "is_primary": false,
+      "contact": {
+        "Id": "0035g00004CON003AAH",
+        "AccountId": "0015g00002ABCDeAAH",
+        "FirstName": "Jack",
+        "LastName": "Straw",
+        "Title": "Procurement Manager",
+        "Department": "Procurement",
+        "Email": "jack.straw@terrapintouring.example",
+        "Phone": "",
+        "OwnerId": "0055g00000OWNERAAR"
+      },
+      "opportunity_contact_role": {
+        "Id": "00K5g00001OCR003AAH",
+        "OpportunityId": "0065g00003OPP001AAH",
+        "ContactId": "0035g00004CON003AAH",
+        "Role": "Procurement",
+        "IsPrimary": "FALSE"
+      }
+    }
+  ],
+  "sales_notes": [
+    {
+      "Id": "a0N5g00001NOTE01AAH",
+      "OpportunityId": "0065g00003OPP001AAH",
+      "NoteDate": "2026-08-18",
+      "NoteType": "Discovery",
+      "CreatedById": "0055g00000OWNERAAR",
+      "Subject": "Discovery Call",
+      "Body": "Scarlet said Terrapin Touring is consolidating security operations after acquiring six venues. The biggest issue is inconsistent processes and limited executive visibility. She wants a single operating model and a monthly executive-level view of security posture. Casey will own the technical rollout. The team would like to begin deployment in early October."
+    },
+    {
+      "Id": "a0N5g00001NOTE02AAH",
+      "OpportunityId": "0065g00003OPP001AAH",
+      "NoteDate": "2026-08-27",
+      "NoteType": "Technical Validation",
+      "CreatedById": "0055g00000OWNERAAR",
+      "Subject": "Technical Validation",
+      "Body": "Casey confirmed SSO is required before broad rollout and asked that the first phase focus on the corporate environment before expanding to the venues. Terrapin Touring expects the Wall of Sound implementation team to help define the initial rollout plan. Casey said their identity team will need at least two weeks' notice for configuration work."
+    },
+    {
+      "Id": "a0N5g00001NOTE03AAH",
+      "OpportunityId": "0065g00003OPP001AAH",
+      "NoteDate": "2026-09-04",
+      "NoteType": "Commercial",
+      "CreatedById": "0055g00000OWNERAAR",
+      "Subject": "Commercial Review",
+      "Body": "Scarlet agreed to the commercial terms and said she wants to show measurable progress to the CIO before the end of Q4. No specific success metrics were finalized. Jack requested the final order form and confirmed procurement is complete."
+    },
+    {
+      "Id": "a0N5g00001NOTE04AAH",
+      "OpportunityId": "0065g00003OPP001AAH",
+      "NoteDate": "2026-09-10",
+      "NoteType": "Handoff Confirmation",
+      "CreatedById": "0055g00000OWNERAAR",
+      "Subject": "Wall of Sound Handoff Plan Confirmed",
+      "Body": "Scarlet explicitly accepted executive sponsorship and will resolve cross-team escalations. Casey remains technical owner. Scarlet, Casey, and the Wall of Sound implementation lead agreed the rollout plan and planning-support scope: Casey sends identity-team notice by 2026-09-18, providing at least two weeks before SSO validation on 2026-10-02. Corporate pilot begins 2026-10-05; venue rollout begins 2026-11-02 and finishes 2026-11-30. SSO must pass before broad rollout. They agreed that by 2026-11-30 all six venues will report to one dashboard and at least 95% of priority alerts will appear within 15 minutes. By 2026-12-18 mean investigation time must be at most 42 minutes against the agreed 60-minute baseline. The implementation lead accepted initial rollout-planning assistance. Casey will schedule kickoff by 2026-09-17. These specific agreements resolve the open timeline and success-metric questions in the earlier notes."
+    },
+    {
+      "Id": "a0N5g00001NOTE05AAH",
+      "OpportunityId": "0065g00003OPP001AAH",
+      "NoteDate": "2026-09-14",
+      "NoteType": "Change Request",
+      "CreatedById": "0055g00000OWNERAAR",
+      "Subject": "Wall of Sound Pilot Schedule Changed",
+      "Body": "Scarlet, Casey, and the Wall of Sound implementation lead approved moving the corporate pilot start to 2026-11-02 because the identity team cannot support SSO validation on 2026-10-02. This replaces the 2026-10-05 pilot start agreed on 2026-09-10. The opportunity timeline still shows the old date and has not been updated. Remaining rollout milestones and success-measurement deadlines need to be re-planned before the receiving team can rely on the handoff."
+    }
+  ]
+}
