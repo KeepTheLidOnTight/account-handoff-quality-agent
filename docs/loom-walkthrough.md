@@ -14,8 +14,7 @@ Open these at a readable zoom:
 4. [Saved handoff history](../examples/handoffs/terrapin-history.json).
 5. [Validation notes](validation-notes.md).
 
-The deck is the main demonstration. It has three slides: a current account
-summary, open action items, and dated handoff data. Avoid touring every file.
+The deck is the main demonstration. It has two slides: a current account brief and clear next steps. Avoid touring every file.
 Close unrelated windows and notifications, then rehearse once with a timer.
 
 If you want a fresh rebuild without typing terminal commands, ask your coding agent:
@@ -30,7 +29,7 @@ Run that before recording so you can check the result. Call it a saved example
 or prepared rebuild. Do not present it as a live model assessment. The PPTX
 renderer needs the environment described in the README, not Python alone.
 
-## 0:00-0:40 - The problem and current state
+## 0:00-0:55 - The problem, current state, and advice
 
 **Show:** slide 1, the current account record.
 
@@ -39,10 +38,9 @@ to rebuild the story. What did the customer want? What did we promise? What's
 still open? Baton keeps one account deck with the current context at the front
 and dated handoffs behind it. It gives the next team one place to begin and makes open work visible.
 
-The front makes the current situation legible in a few seconds. Althea owns the
-account, the handoff needs review, and the December 18 goal remains open.
+The front makes the current situation legible in a few seconds. Six venues report to one dashboard, 96% of priority alerts arrive within 15 minutes, and the 42-minute investigation target remains due December 18. The recommendation is explicit: keep the handoff open until training, QBR, and the measurement are recorded.
 
-## 0:40-1:20 - Open work
+## 0:55-1:35 - Recommended next steps
 
 **Show:** slide 2.
 
@@ -51,17 +49,7 @@ owns Customer Success, but Ruben still owns the December 18 investigation-time
 check because no recorded update reassigned it. Althea owns the two date-confirmation
 follow-ups. The deck shows the text, owner, and due date for each item.
 
-## 1:20-2:20 - Dates and source data
-
-**Show:** slide 3.
-
-This is a fictional customer. The timeline shows the September 16 Sales to
-Implementation handoff and the December 1 transfer to Customer Success. The
-source data is concrete: all six venues report to one dashboard, 96% of priority
-alerts arrive within 15 minutes, and the 42-minute investigation target remains
-due December 18. Training and the first QBR date still need confirmation.
-
-## 2:20-3:05 - How it works
+## 1:35-2:20 - How it works
 
 **Show:** the history file briefly, then the workflow in SKILL.md.
 
@@ -72,7 +60,7 @@ The renderer rebuilds the deck from the stored events. It doesn't use an old
 PowerPoint as the source of truth. Repeating the same event doesn't add another
 section, and a changed event with the same ID is rejected.
 
-## 3:05-3:50 - What AI got wrong
+## 2:20-3:05 - What AI got wrong
 
 **Show:** validation-notes.md.
 
@@ -84,7 +72,7 @@ ordering, owner continuity, duplicate events and carried actions. The automated
 tests check code behavior. A separate agent's two-case review gives a small
 check of evidence interpretation, not a guarantee that the model is accurate.
 
-## 3:50-4:15 - Scope and production work
+## 3:05-3:45 - Scope and production work
 
 **Show:** the account deck's current overview.
 
