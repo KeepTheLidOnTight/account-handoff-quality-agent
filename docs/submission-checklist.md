@@ -8,7 +8,7 @@ replace the assignment's separate write-up requirement.
 | --- | --- | --- |
 | Working agent skill with YAML frontmatter | Prepared locally | [SKILL.md](../SKILL.md), [sales validator](../scripts/analyze_handoff.py), [history helper](../scripts/manage_handoffs.py), and [deck renderer](../scripts/build_deck.mjs). |
 | At least one external data source | Prepared | Five Salesforce-style CSV exports, plus explicit transfer records and notes. The assignment accepts structured files and mock data. |
-| Public GitHub repository | Existing repo; updated package needs verification | [Baton](https://github.com/KeepTheLidOnTight/baton). Confirm the public version contains this account-deck implementation and artifacts before submitting. |
+| Public GitHub repository | Published and verified | [Baton](https://github.com/KeepTheLidOnTight/baton) contains the account-deck implementation and artifacts. |
 | Short README with setup and run instructions | Prepared | [README](../README.md) explains both Python helpers and PPTX renderer requirements. |
 | Clear GTM problem and business impact | Prepared | [One-pager](one-pager.pdf) explains retained account context and unfinished work. Benefit remains unmeasured. |
 | Use AI and explain its role | Documented | [Validation notes](validation-notes.md) and [interview prep](interview-prep.md) describe drafts, failures, checks and limits. |
@@ -20,8 +20,7 @@ replace the assignment's separate write-up requirement.
 
 ## Before sending
 
-- Confirm this revised package is published and the public repo opens without
-  relying on a signed-in account.
+- Open the public repo without relying on a signed-in account before sending.
 - Open the saved account deck and separate summary slide. Check that September
   is Ready, December is Needs Review, and the future case is labeled simulated.
 - Check the latest owner, carried investigation-time action and preserved earlier
