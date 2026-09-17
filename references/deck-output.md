@@ -37,6 +37,4 @@ unavailable, report that the deck could not be rebuilt. The saved sample PPTX
 remains viewable and the Python history helper remains usable, but an outline or
 history file is not a generated deck.
 
-Manual PowerPoint edits do not flow back into the saved history. The account
-deck is Baton's customer-specific output; the project's one-pager and single
-demo-summary slide are separate assignment deliverables.
+Manual PowerPoint edits do not flow back into the saved history. The account deck is Baton's customer-specific output; the one-pager is the separate assignment write-up.
