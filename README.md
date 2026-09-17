@@ -1,101 +1,76 @@
 # Baton
 
-An account changes hands, and the next team has to piece the story together again.
-Baton keeps one deck with the account: two current-state pages at the front, a
-short handoff history, then one dated page per recorded transfer. Open work
-stays visible until someone closes it.
+Baton keeps one account handoff deck current as an account moves between internal
+owners or teams. The opening pages show the current owner, context and unfinished
+work. Each transfer adds one dated page, so the original handoff record stays
+easy to find.
 
-The [example deck](examples/terrapin-account-deck.pptx) follows **Terrapin Touring
-Co.** from Sales to Implementation, then to Customer Success. All names, dates and
-results are fictional. The later transfer is a simulated future case.
+Open the [example deck](examples/terrapin-account-deck.pptx). It follows a
+fictional account from Sales to Implementation, then Customer Success.
 
-## What it does
+## Start here
 
-For each supplied transfer, the skill reviews the records and notes, saves a
-sourced assessment, and rebuilds the deck. Earlier handoffs keep their original
-facts and readiness. The front reflects the latest recorded transfer. Unfinished
-actions carry forward even when the newest handoff doesn't mention them.
+Ask your coding agent to follow [SKILL.md](SKILL.md) and rebuild the Terrapin
+deck from the history in `examples/handoffs`. It will review the account, show
+the current owner and open actions, and preserve both dated handoffs.
 
-Python checks the records and protects the saved history. The model reviews what
-the evidence means. A filled CRM date can still disagree with a later agreement,
-and a Customer Success handoff needs different checks from a sales one.
-
-This prototype runs when someone supplies a handoff. It does not detect ownership
-changes in Salesforce or write back to CRM. A current-owner field cannot tell it
-who owned the account before or when the change happened.
-
-## Try it in your coding agent
-
-Open this project and use:
-
-> Follow SKILL.md. Read the Terrapin history in examples/handoffs and rebuild its
-> account deck. Show the latest owner, outstanding actions and both dated
-> handoffs. Explain which actions carried forward. Don't change source data.
-
-To record another handoff, provide the existing account history, a transfer
-record with the old and new internal owners/teams and date, and relevant notes.
-Baton needs those facts explicitly. [The schema](references/handoff-schema.md)
-defines the saved record.
-
-## Setup and commands
-
-The validator and history helper use **Python 3.9+ with no extra packages**:
+The project has two small helpers:
 
 ```sh
 python3 scripts/analyze_handoff.py
 python3 scripts/manage_handoffs.py view --history examples/handoffs/terrapin-history.json
 ```
 
-The first command runs the original Closed Won checks. The second shows the
-handoffs and current outstanding work. To add a prepared event to a working copy:
+The first checks a Closed Won sales handoff. The second reads the saved history
+and derives the current owner and open work. To record a new, prepared transfer:
 
 ```sh
 python3 scripts/manage_handoffs.py add --history account-history.json --event new-handoff.json
 ```
 
-Adding the same event twice won't duplicate its section. Changing an existing
-event ID is rejected. This is a local workflow for one writer at a time.
-
-**Deck generation also needs Node.js and an installed `@oai/artifact-tool`.**
-The Codex environment used for this demo supplies that presentation library.
-Set `BATON_NODE_MODULES` to its Node modules folder if needed, and `BATON_PYTHON`
-if Python isn't available as `python3`. There is no paid API call in the renderer.
-The library is not bundled here; Python alone cannot rebuild the PPTX. Reviewers
-can open the saved example deck directly.
+Then rebuild the deck:
 
 ```sh
-node scripts/build_deck.mjs --history examples/handoffs/terrapin-history.json --output account-deck.pptx --demo
+node scripts/build_deck.mjs --history account-history.json --output account-deck.pptx --demo
 ```
 
-The included Project Kickoff template provides the layout. See
-[deck output guidance](references/deck-output.md) for the evidence rules.
-Corrections to saved history need an explicit reviewed process. Manual
-PowerPoint edits won't update the history used for the next rebuild.
+Deck creation needs Node.js and `@oai/artifact-tool`; the saved example deck is
+ready to open without any setup.
 
-## Checks and examples
+## Optional Apollo connection
+
+Baton can retrieve a **read-only current account snapshot** from Apollo. It
+checks the key, searches your saved Apollo accounts, and fetches the account you
+choose. It does not write to Apollo, detect a historical transfer, or add one to
+Baton automatically.
+
+Create a scoped Apollo API key with access to account search and account view,
+then keep it in your local environment as `APOLLO_API_KEY`. Do not put the key or
+real account snapshots in this public repository.
+
+```sh
+python3 scripts/apollo_snapshot.py health
+python3 scripts/apollo_snapshot.py search --name "Account name"
+python3 scripts/apollo_snapshot.py snapshot --account-id APOLLO_ACCOUNT_ID --out apollo/account.json
+```
+
+Use the saved snapshot as current-account evidence when preparing a transfer.
+The prior owner, new owner and effective date still need to be supplied and
+reviewed explicitly. See [Apollo integration notes](references/apollo-integration.md).
+
+## Demo material
+
+The [one-pager](docs/one-pager.pdf), [single summary slide](docs/demo-slide.pptx),
+[Loom walkthrough](docs/loom-walkthrough.md) and
+[interview prep](docs/interview-prep.md) are ready for the assignment. Record a
+Loom under five minutes, then add its link here before submitting.
+
+## Check it
 
 ```sh
 python3 -B -m unittest discover -s tests -v
 ```
 
-Tests cover the sales validator and handoff-history behavior. The original
-[five data scenarios](docs/scenarios.md) still exercise missing fields, complete
-records, conflicting notes and broken links. The saved Markdown
-[assessments](examples/blocked-assessment.md) show the reasoning behind those
-checks. The account deck is now the main output.
-
-## Demo and write-up
-
-The [one-pager](docs/one-pager.pdf) and [single summary slide](docs/demo-slide.pptx)
-explain the project. They are separate from the account handoff deck.
-The [Loom walkthrough](docs/loom-walkthrough.md), [interview prep](docs/interview-prep.md)
-and [submission checklist](docs/submission-checklist.md) cover the presentation.
-The recording is still to come.
-
-## What I'd do next in production
-
-Agree on each receiving team's requirements, connect to account ownership
-history with limited permissions, and handle concurrent updates and retries.
-I'd add reviewed corrections, access controls and retention for customer
-records, then evaluate more real handoffs for missed gaps and false alarms.
-I haven't measured time savings or customer impact.
+All included records are fictional. See [the handoff schema](references/handoff-schema.md)
+for the event format and [deck guidance](references/deck-output.md) for what the
+deck preserves.
