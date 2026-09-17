@@ -4,10 +4,11 @@ Generate one editable PowerPoint deck per account from the saved handoff history
 Rebuild it when a new transfer is recorded. Keep the prior events' assessments,
 sources and actions as they were recorded.
 
-Opening slides show the account's latest recorded owner/team, latest transfer
-date, customer context and all outstanding actions. Label the as-of date and use
-the latest handoff's readiness. Each dated section explains the ownership/team
-change, assessment, commitments, gaps, risks and follow-up actions.
+The first two slides show the latest recorded owner/team, latest transfer date,
+customer context and outstanding actions. A short history follows. Add one dated
+slide for every recorded transfer. Label the as-of date and use the latest
+handoff's readiness. Each dated slide explains the ownership/team change,
+assessment, commitments, gaps, risks and follow-up actions.
 
 Keep internal employees separate from customer stakeholders. Preserve source IDs
 beside claims and complete citations in speaker notes. Add continuation pages when

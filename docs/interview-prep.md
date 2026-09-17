@@ -3,6 +3,22 @@
 Use these as speaking notes, not a script to memorize. Describe the actual
 AI-assisted process. Add personal experience only when it is something you did.
 
+## The five points to remember
+
+1. Baton keeps one account record through team changes. The first two slides
+   show the latest state; one dated slide is added for each recorded handoff.
+2. Account ownership and action ownership are separate. Althea owns the account;
+   Ruben keeps the December 18 measurement action until a supported update says
+   otherwise.
+3. Python handles deterministic record checks. The model interprets evidence and
+   points out ambiguity. Neither one decides or writes a CRM ownership change.
+4. The September and December labels can differ because they assess different
+   transfers with the evidence available at those times. The example is fictional;
+   December is a simulated future case.
+5. The next production step is to connect read-only ownership history, agree on
+   receiving-team rules, and measure missed gaps and false alarms on labeled
+   handoffs.
+
 ## Your 30-second introduction
 
 I built Baton to keep an account's story together when ownership changes.

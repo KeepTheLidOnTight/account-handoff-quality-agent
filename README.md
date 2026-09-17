@@ -1,8 +1,9 @@
 # Baton
 
 An account changes hands, and the next team has to piece the story together again.
-Baton keeps one deck with the account: current context at the front, dated
-handoffs behind it, and open work that stays visible until someone closes it.
+Baton keeps one deck with the account: two current-state pages at the front, a
+short handoff history, then one dated page per recorded transfer. Open work
+stays visible until someone closes it.
 
 The [example deck](examples/terrapin-account-deck.pptx) follows **Terrapin Touring
 Co.** from Sales to Implementation, then to Customer Success. All names, dates and

@@ -61,11 +61,11 @@ It applies to initial sales handoffs, not automatically to later internal transf
 - The full suite passed under Python 3.9+: 56 tests in 13.759 seconds.
   Run it with `python3 -B -m unittest discover -s tests -v` on a supported
   Python version.
-- Deck checks passed: the one-event deck has six slides, the two-event deck has
-  nine; a repeat rebuild kept its slide and notes text identical; the September
-  history remained unchanged; each handoff appeared once; and the carried action
-  stayed visible. The final deck passed package, layout, font and import checks,
-  and all nine rendered slides were reviewed for readability.
+- Deck checks passed: the one-event deck has four slides, and the two-event deck
+  has five. The additional transfer adds one dated record while the current pages
+  refresh. The carried action stays visible. The final deck passed package,
+  layout, font and import checks, and all five rendered slides were reviewed for
+  readability.
 
 ## Limits of these checks
 
