@@ -115,38 +115,38 @@ async function main() {
   const openActions = view.current.open_actions || [];
   const actionCtx = context(openActions.flatMap(a => a.sources));
   const actionNotes = `Outstanding actions as of ${view.current.as_of}. These are the most recent recorded action states across every stored handoff. An action stays open until a later event explicitly changes its status.\n\n${openActions.map(a => `Action ${a.id}\nOriginating handoff: ${a.event_id}\nLast update: ${a.updated_event_id}\n${a.text}`).join('\n\n')}\n\n${actionCtx.notes}`;
-  const cover = slide(view.account.name, 'Current account record', currentNotes);
-  addText(cover, view.current.readiness, { left: 70, top: 260, width: 490, height: 65 }, { typeface: 'Inter Medium', fontSize: 50, color: LIME });
-  addText(cover, `Latest recorded state\n${last.assessment.summary}${currentCtx.refs(summarySources(last))}`, { left: 70, top: 350, width: 760, height: 180 }, { fontSize: 24, color: WHITE });
-  section(cover, 'Account owner', owner(view.current.owner), { left: 885, top: 270, width: 260, height: 130 });
-  section(cover, 'Latest transfer', `${last.from.team} to ${last.to.team}\n${last.effective_at.slice(0, 10)}${currentCtx.refs(last.source_ids)}`, { left: 885, top: 440, width: 260, height: 120 });
+  const cover = slide(view.account.name, 'Account handoff summary', currentNotes);
+  addText(cover, view.current.readiness, { left: 70, top: 240, width: 490, height: 65 }, { typeface: 'Inter Medium', fontSize: 50, color: LIME });
+  section(cover, 'Current owner', owner(view.current.owner), { left: 70, top: 340, width: 440, height: 100 });
+  section(cover, 'Latest transfer', `${last.from.team} to ${last.to.team}\n${last.effective_at.slice(0, 10)}${currentCtx.refs(last.source_ids)}`, { left: 70, top: 485, width: 440, height: 100 });
+  section(cover, 'Source data', `${last.assessment.summary}${currentCtx.refs(summarySources(last))}`, { left: 610, top: 240, width: 510, height: 155 });
+  section(cover, 'Customer context', `${itemText(last.assessment.goals, currentCtx, last.sources)}\n\n${itemText(last.assessment.stakeholders, currentCtx, last.sources)}`, { left: 610, top: 445, width: 510, height: 165 });
 
-  const current = slide('Current context and unresolved work', 'What the next team needs', actionNotes, true);
-  section(current, 'Customer goal', itemText(last.assessment.goals, currentCtx, last.sources), { left: 70, top: 250, width: 470, height: 190 }, '', true);
-  section(current, 'Customer stakeholders', itemText(last.assessment.stakeholders, currentCtx, last.sources), { left: 625, top: 250, width: 490, height: 190 }, '', true);
-  addText(current, 'OPEN ACTIONS', { left: 70, top: 500, width: 1045, height: 26 }, { typeface: 'Inter Medium', fontSize: 15, color: '#4A7A1D' });
+  const current = slide('Open action items', 'Work that still needs an owner or date', actionNotes, true);
   if (!openActions.length) {
-    addText(current, 'No open actions.', { left: 70, top: 540, width: 1045, height: 60 }, { fontSize: 21, color: INK });
+    addText(current, 'No open actions.', { left: 70, top: 250, width: 1045, height: 60 }, { fontSize: 24, color: INK });
   } else {
     openActions.forEach((action, index) => {
-      const width = 325;
-      const left = 70 + index * 355;
-      addText(current, actionTitle(action, index, view.account.name), { left, top: 540, width, height: 28 }, { typeface: 'Inter Medium', fontSize: 21, color: INK });
-      addText(current, `${action.owner}\nDue: ${action.due || 'Not confirmed'}${actionCtx.refs(action.source_ids, action.sources)}`, { left, top: 575, width, height: 55 }, { fontSize: 17, color: INK });
+      const top = 230 + index * 135;
+      addText(current, `${index + 1}`, { left: 70, top, width: 42, height: 42 }, { typeface: 'Inter Medium', fontSize: 28, color: '#4A7A1D' });
+      addText(current, action.text + actionCtx.refs(action.source_ids, action.sources), { left: 135, top, width: 650, height: 70 }, { typeface: 'Inter Medium', fontSize: 22, color: INK });
+      addText(current, `${action.owner}\nDue: ${action.due || 'Not Confirmed'}`, { left: 830, top: top + 2, width: 290, height: 62 }, { fontSize: 18, color: INK });
     });
   }
 
   const historyNotes = `Handoff timeline from validated stored history. Each row is a dated immutable event.\n\n${view.events.map(e => `${e.handoff_id}\n${e.effective_at}\n${e.from.owner_name} (${e.from.team}) to ${e.to.owner_name} (${e.to.team})\n${e.assessment.readiness}`).join('\n\n')}`;
-  const history = slide('Recorded handoff history', 'The account keeps its prior context', historyNotes);
+  const history = slide('Dates and handoff data', 'Recorded milestones', historyNotes);
   view.events.forEach((event, index) => {
     const ctx = context(event.sources);
-    const top = 260 + index * 185;
+    const top = 245 + index * 170;
     addText(history, event.effective_at.slice(0, 10), { left: 70, top, width: 190, height: 32 }, { typeface: 'Inter Medium', fontSize: 24, color: LIME });
     addText(history, `${event.from.team} to ${event.to.team}`, { left: 280, top, width: 440, height: 32 }, { typeface: 'Inter Medium', fontSize: 25, color: WHITE });
     addText(history, event.assessment.readiness, { left: 900, top, width: 220, height: 32 }, { typeface: 'Inter Medium', fontSize: 25, color: event.assessment.readiness === 'Ready' ? LIME : '#F7C96A', alignment: 'right' });
-    addText(history, `${event.from.owner_name} hands the account to ${event.to.owner_name}. ${event.assessment.summary}${ctx.refs(summarySources(event))}`, { left: 280, top: top + 52, width: 830, height: 95 }, { fontSize: 21, color: WHITE });
+    addText(history, `${event.from.owner_name} hands the account to ${event.to.owner_name}. ${event.assessment.summary}${ctx.refs(summarySources(event))}`, { left: 280, top: top + 48, width: 830, height: 82 }, { fontSize: 20, color: WHITE });
   });
-  for (const event of view.events) {
+  /* Detailed historical slides are intentionally omitted. The deck stays a
+     digestible handoff brief: summary, open work, and dated source data. */
+  for (const event of []) {
     const date = event.effective_at.slice(0, 10);
     const ctx = context(event.sources);
     const policy = event.handoff_type === 'sales_to_implementation' ? 'Sales handoff policy' : 'Internal transfer policy';
