@@ -8,7 +8,7 @@ bubble is optional. The interview date is still TBD.
 
 Open these at a readable zoom:
 
-1. [The project summary slide](demo-slide.pptx).
+1. [The one-pager](one-pager.pdf).
 2. [Terrapin's account deck](../examples/terrapin-account-deck.pptx).
 3. [SKILL.md](../SKILL.md), especially the two readiness policies.
 4. [Saved handoff history](../examples/handoffs/terrapin-history.json).
@@ -37,8 +37,7 @@ renderer needs the environment described in the README, not Python alone.
 I built Baton because every time an account changes teams, the next person has
 to rebuild the story. What did the customer want? What did we promise? What's
 still open? Baton keeps one account deck with the current context at the front
-and dated handoffs behind it. I want to reduce preparation and dropped
-commitments. I haven't measured that impact yet.
+and dated handoffs behind it. It gives the next team one place to begin and makes open work visible.
 
 The front makes the current situation legible in a few seconds. Althea owns the
 account, the handoff needs review, and the December 18 goal remains open.
@@ -87,7 +86,7 @@ check of evidence interpretation, not a guarantee that the model is accurate.
 
 ## 3:50-4:15 - Scope and production work
 
-**Show:** the summary slide or the account deck's current overview.
+**Show:** the account deck's current overview.
 
 This runs when someone supplies a handoff. It doesn't detect CRM ownership
 changes or write anything back. For production, I'd connect to actual ownership

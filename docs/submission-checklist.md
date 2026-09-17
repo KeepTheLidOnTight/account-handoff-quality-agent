@@ -1,8 +1,6 @@
-# Apollo submission checklist
+# Assignment submission checklist
 
-The working product is now **one account deck with dated handoffs**. The project
-summary slide and one-pager explain that product; the account deck does not
-replace the assignment's separate write-up requirement.
+The working product is now **one account deck with dated handoffs**. The one-pager explains the project; the account deck shows the customer-specific output.
 
 | Assignment criterion | Status | Evidence or remaining action |
 | --- | --- | --- |
@@ -10,10 +8,10 @@ replace the assignment's separate write-up requirement.
 | At least one external data source | Prepared | Five Salesforce-style CSV exports, plus explicit transfer records and notes. The assignment accepts structured files and mock data. |
 | Public GitHub repository | Published and verified | [Baton](https://github.com/KeepTheLidOnTight/baton) contains the account-deck implementation and artifacts. |
 | Short README with setup and run instructions | Prepared | [README](../README.md) explains both Python helpers and PPTX renderer requirements. |
-| Clear GTM problem and business impact | Prepared | [One-pager](one-pager.pdf) explains retained account context and unfinished work. Benefit remains unmeasured. |
+| Clear GTM problem and business impact | Prepared | [One-pager](one-pager.pdf) explains retained account context and unfinished work. |
 | Use AI and explain its role | Documented | [Validation notes](validation-notes.md) and [interview prep](interview-prep.md) describe drafts, failures, checks and limits. |
 | Tooling and confidential-data requirements | Dependency qualification needed | Python helpers use the standard library. PPTX generation also requires Node.js and `@oai/artifact-tool` supplied by the demo's Codex environment. It is not bundled here. No renderer API charge or real customer data is involved, but don't claim universal free access to that library. Reviewers can open the saved deck directly. |
-| One-pager OR single project-summary slide | Prepared | [One-pager PDF](one-pager.pdf) and [editable summary slide](demo-slide.pptx). Both were requested. |
+| One-pager OR single project-summary slide | Prepared | [One-pager PDF](one-pager.pdf). |
 | Live demo OR Loom of no more than 5 minutes linked in repo | Recording pending | [Loom walkthrough](loom-walkthrough.md) uses the [account deck](../examples/terrapin-account-deck.pptx). Record, check duration/access, and add the URL to README. A script alone does not fulfill the recording option. |
 | Cover all five discussion topics | Prepared; rehearse | [Interview prep](interview-prep.md) covers the problem, assumptions, design, AI checks and production hardening. |
 | Submit at least 24 hours before interview | Pending | Interview date is TBD. No recruiter message has been sent. |
@@ -21,8 +19,7 @@ replace the assignment's separate write-up requirement.
 ## Before sending
 
 - Open the public repo without relying on a signed-in account before sending.
-- Open the saved account deck and separate summary slide. Check that September
-  is Ready, December is Needs Review, and the future case is labeled simulated.
+- Open the saved account deck. Check that September is Ready, December is Needs Review, and the future case is labeled simulated.
 - Check the latest owner, carried investigation-time action and preserved earlier
   content. The deck must match its saved history.
 - Follow the README from a fresh copy. If rebuilding PPTX, use the documented

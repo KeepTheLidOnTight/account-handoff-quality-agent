@@ -1,31 +1,29 @@
 # Baton
 
-One account deck that keeps its history as ownership changes.
-
-**Transfer evidence / Python checks / Skill assessment / Saved history / Account deck**
-
 ## Why I built it
 
-When an account changes hands, the next team often has to reconstruct what the customer wanted and what is still owed. I built Baton to keep that context in one deck. The front shows the latest owner and outstanding work; dated sections preserve earlier handoffs. The intended benefit is less preparation and fewer dropped commitments. I have not measured time savings or customer impact.
+When an account moves between internal teams, the next owner needs a quick, reliable view of the customer: what was sold, what matters now, and what still needs a decision. Baton turns that handoff into one account deck so the new team can start with the right context and open work.
 
-## What I assumed
+## Simple assumptions
 
-A person supplies each transfer, its date, and both internal owners and teams. A current CRM owner cannot establish the previous owner or when a change happened. Internal employees and customer contacts are different roles. For the initial sales handoff, missing sponsorship, timeline, or success criteria blocks readiness. Later transfers use current responsibilities and outstanding commitments instead. These are prototype policies to agree with the receiving teams.
+Someone starts a handoff when an account changes owner or team. They provide the date, the outgoing team, and the incoming team. Baton uses the CRM export and call notes as the shared record for the deck.
 
-## How I split the work
+## A concrete example
 
-The initial sales check reads five Salesforce-style CSVs: Account, Opportunity, Contact, OpportunityContactRole, and SalesNotes. They provide the external data source. Python validates those records and protects the handoff history from duplicate events, conflicting updates, chronology errors, and owner discontinuity. The skill assesses meaning, cites evidence, and records follow-up actions. The renderer rebuilds the PowerPoint from saved history, preserving earlier content. Python helpers use the standard library; deck generation also needs Node.js and the presentation library supplied in the demo's Codex environment.
+Terrapin Touring Co. moves from Sales to Product Onboarding on September 16. The handoff deck captures the customer goal, key contacts, and the work Sales promised. When the account moves again, Baton adds the new handoff to the same deck and keeps the earlier record in place. The current owner can quickly see what is still open, who owns it, and when it is due.
 
-## The example I would show
+## How Baton works
 
-Terrapin Touring Co. moves from Sales to Implementation on September 16, 2026 with a Ready assessment. A simulated December 1 transfer gives Althea Cassidy in Customer Success the account, with Needs Review because training and QBR dates remain unconfirmed. The September section keeps its original assessment. An open December 18 investigation-time check carries forward even though the second event omits it. Ruben in Implementation remains responsible for that action until evidence supports a change. A new account owner does not silently inherit every action.
+1. A person triggers a handoff when an owner or team changes.
+2. Baton reads the account records and notes, checks for key handoff details, and creates or updates that account's deck.
+3. The team reviews the deck, completes the open items, and leaves feedback so the next handoff gets better.
 
-## Where AI helped, and needed checking
+## Human in the loop
 
-I used AI to draft the skill, code, fictional cases, and supporting materials, then asked for review and failure tests. The initial sales validator could select the wrong deal, accept TBD, and hide broken contact links. Those findings drove fixes. All 56 tests pass: 27 sales tests and 29 history tests. Five sales fixtures and a separate two-export agent review checked the distinction between filled fields and reliable evidence. History tests cover saved records and open actions. These checks test specific behavior, not broad model accuracy or the truth of customer statements.
+AI helps organize the information and point out missing details. A person reviews the deck before using it, confirms what is true, and decides what should happen next.
 
-## What I would change for production
+## What I would add in production
 
-I would connect to actual ownership history with limited access, define each team's handoff requirements, and add monitored runs with safe retries. Shared use needs concurrent-write handling and a reviewed correction process; this local prototype expects one writer. Customer notes need access controls and retention rules. At scale I would fetch only relevant changes and handle API limits. I would evaluate labeled real handoffs for missed gaps and false alarms. There is no automatic CRM trigger or writeback today, and manual slide edits do not update saved history.
+I would connect Baton to Apollo's API so it can pull the right account context when a handoff starts. I would keep the manual trigger, add simple feedback on every deck, and use that feedback to improve the handoff checks over time. Teams could also set their own required fields and notification rules.
 
-*All demo names, records, dates, and results are fictional. December 1 is a simulated future transfer.*
+*All names, records, dates, and results in this demo are fictional.*
