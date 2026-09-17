@@ -55,7 +55,6 @@ avoids real credentials or customer data.
 ## Assignment material
 
 - [One-pager](docs/one-pager.pdf)
-- [Single summary slide](docs/demo-slide.pptx)
 - [Loom walkthrough](docs/loom-walkthrough.md)
 - [Interview prep](docs/interview-prep.md)
 - [Submission checklist](docs/submission-checklist.md)
