@@ -1,0 +1,65 @@
+{
+  "handoff_id": "terrapin-2026-09-16-sales-implementation",
+  "account_id": "0015g00002ABCDeAAH",
+  "effective_at": "2026-09-16T09:00:00-05:00",
+  "handoff_type": "sales_to_implementation",
+  "from": {
+    "owner_id": "0055g00000OWNERAAR",
+    "owner_name": "Samson Delilah",
+    "team": "Sales"
+  },
+  "to": {
+    "owner_id": "005MOCKIMPLRUBEN",
+    "owner_name": "Ruben Cherise",
+    "team": "Implementation"
+  },
+  "reason": "Closed Won purchase moves into the agreed implementation plan.",
+  "id": "mock-ownership-2026-09-16",
+  "date": "2026-09-16",
+  "fictional": true,
+  "note": "Fictional POC ownership event, not a live CRM update. Samson Delilah is the mock display name for seller OwnerId 0055g00000OWNERAAR. Ruben Cherise is an invented internal implementation employee; neither employee is a customer contact. Ruben accepts rollout verification and the December 18 investigation-time measurement task. Customer commitments and dates are copied from the ready-scenario September 10 confirmation note.",
+  "actions": [
+    {
+      "id": "terrapin-kickoff",
+      "text": "Schedule implementation kickoff.",
+      "owner": "Casey Jones (customer)",
+      "due": "2026-09-17",
+      "status": "open",
+      "source_ids": [
+        "confirmation"
+      ]
+    },
+    {
+      "id": "terrapin-identity-notice",
+      "text": "Send the identity-team configuration request.",
+      "owner": "Casey Jones (customer)",
+      "due": "2026-09-18",
+      "status": "open",
+      "source_ids": [
+        "confirmation"
+      ]
+    },
+    {
+      "id": "terrapin-rollout-check",
+      "text": "Verify six venues report to one dashboard and ≥95% of priority alerts arrive within 15 minutes.",
+      "owner": "Ruben Cherise (Implementation)",
+      "due": "2026-11-30",
+      "status": "open",
+      "source_ids": [
+        "confirmation",
+        "ownership-september"
+      ]
+    },
+    {
+      "id": "terrapin-investigation-target",
+      "text": "Verify mean investigation time ≤42 minutes against the agreed 60-minute baseline.",
+      "owner": "Ruben Cherise (Implementation)",
+      "due": "2026-12-18",
+      "status": "open",
+      "source_ids": [
+        "confirmation",
+        "ownership-september"
+      ]
+    }
+  ]
+}

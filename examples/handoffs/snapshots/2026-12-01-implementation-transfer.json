@@ -1,0 +1,73 @@
+{
+  "handoff_id": "terrapin-2026-12-01-implementation-cs",
+  "account_id": "0015g00002ABCDeAAH",
+  "effective_at": "2026-12-01T09:00:00-06:00",
+  "handoff_type": "internal_transfer",
+  "from": {
+    "owner_id": "005MOCKIMPLRUBEN",
+    "owner_name": "Ruben Cherise",
+    "team": "Implementation"
+  },
+  "to": {
+    "owner_id": "005MOCKCSALTHEA",
+    "owner_name": "Althea Cassidy",
+    "team": "Customer Success"
+  },
+  "reason": "Implementation milestone review transfers ongoing customer ownership to Customer Success.",
+  "id": "mock-ownership-2026-12-01",
+  "date": "2026-12-01",
+  "fictional": true,
+  "note": "Fictional future POC event. Ruben Cherise transfers internal account ownership to Althea Cassidy on December 1, 2026. The November 30 implementation review confirms all six venues reporting to one dashboard and 96% of priority alerts appearing within 15 minutes. SSO validation passed October 2. Kickoff was scheduled September 17; the identity-team configuration request was sent September 18. Scarlet remains executive sponsor and Casey remains customer technical owner. Mean investigation time at most 42 minutes, against the agreed 60-minute baseline, remains due December 18; its final measurement is not yet confirmed. Ruben retains responsibility for that measurement after the ownership transfer. The customer training session and first QBR date are Not Confirmed; Althea accepts both follow-ups. Ready sales evidence does not determine readiness for this later transfer.",
+  "actions": [
+    {
+      "id": "terrapin-kickoff",
+      "text": "Schedule implementation kickoff.",
+      "owner": "Casey Jones (customer)",
+      "due": "2026-09-17",
+      "status": "done",
+      "source_ids": [
+        "ownership-december"
+      ]
+    },
+    {
+      "id": "terrapin-identity-notice",
+      "text": "Send the identity-team configuration request.",
+      "owner": "Casey Jones (customer)",
+      "due": "2026-09-18",
+      "status": "done",
+      "source_ids": [
+        "ownership-december"
+      ]
+    },
+    {
+      "id": "terrapin-rollout-check",
+      "text": "Verify six venues report to one dashboard and ≥95% of priority alerts arrive within 15 minutes.",
+      "owner": "Ruben Cherise (Implementation)",
+      "due": "2026-11-30",
+      "status": "done",
+      "source_ids": [
+        "ownership-december"
+      ]
+    },
+    {
+      "id": "terrapin-training",
+      "text": "Confirm the customer training session and record the agreed date.",
+      "owner": "Althea Cassidy (Customer Success)",
+      "due": null,
+      "status": "open",
+      "source_ids": [
+        "ownership-december"
+      ]
+    },
+    {
+      "id": "terrapin-qbr",
+      "text": "Confirm the first QBR date with the customer.",
+      "owner": "Althea Cassidy (Customer Success)",
+      "due": null,
+      "status": "open",
+      "source_ids": [
+        "ownership-december"
+      ]
+    }
+  ]
+}

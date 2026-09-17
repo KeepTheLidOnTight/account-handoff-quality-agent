@@ -1,31 +1,31 @@
 # Baton
 
-A practical check before sales hands a deal to implementation.
+One account deck that keeps its history as ownership changes.
 
-**CSV exports -> Python checks -> Skill review -> Handoff brief**
+**Transfer evidence / Python checks / Skill assessment / Saved history / Account deck**
 
 ## Why I built it
 
-A Closed Won deal can still leave the implementation team guessing. The sponsor is missing, the rollout plan is buried in notes, or a customer request reads like an agreed commitment. I built this skill to pull those details into a short, sourced handoff brief. The intended benefit is less kickoff preparation and fewer missed expectations. I have not measured time savings, revenue impact, or customer outcomes.
+When an account changes hands, the next team often has to reconstruct what the customer wanted and what is still owed. I built Baton to keep that context in one deck. The front shows the latest owner and outstanding work; dated sections preserve earlier handoffs. The intended benefit is less preparation and fewer dropped commitments. I have not measured time savings or customer impact.
 
 ## What I assumed
 
-The user is a post-sale teammate preparing for kickoff. For this prototype, a documented executive sponsor, implementation timeline, and success criteria are core requirements: any missing one means Blocked. Smaller gaps mean Needs Review. These are business assumptions to validate with the receiving team, not universal Salesforce rules. The five Salesforce-style CSV exports are the external data source; this version does not require a live Salesforce connection.
+A person supplies each transfer, its date, and both internal owners and teams. A current CRM owner cannot establish the previous owner or when a change happened. Internal employees and customer contacts are different roles. For the initial sales handoff, missing sponsorship, timeline, or success criteria blocks readiness. Later transfers use current responsibilities and outstanding commitments instead. These are prototype policies to agree with the receiving teams.
 
 ## How I split the work
 
-Python reads Account, Opportunity, Contact, OpportunityContactRole, and SalesNotes. It selects the Closed Won deal, checks fields and record links, and preserves the evidence. If several deals qualify, the user chooses. The skill then compares CRM fields with notes and produces seven sections covering readiness, gaps, goals, stakeholders, expectations, risks, and a short summary. I kept repeatable checks in code and contextual judgment in the skill. Version one does not update CRM records, contact customers, or run automatically when a deal closes.
+The initial sales check reads five Salesforce-style CSVs: Account, Opportunity, Contact, OpportunityContactRole, and SalesNotes. They provide the external data source. Python validates those records and protects the handoff history from duplicate events, conflicting updates, chronology errors, and owner discontinuity. The skill assesses meaning, cites evidence, and records follow-up actions. The renderer rebuilds the PowerPoint from saved history, preserving earlier content. Python helpers use the standard library; deck generation also needs Node.js and the presentation library supplied in the demo's Codex environment.
 
 ## The example I would show
 
-Terrapin Touring Co.'s incomplete handoff is Blocked. A complete version passes the structured checks as Ready. In a third version, CRM still says the corporate pilot starts October 5, but a note records an approved move to November 2 and says other milestones need re-planning. The skill returns Needs Review, cites both sources, and asks for reconciliation. Filled fields alone are not enough.
+Terrapin Touring Co. moves from Sales to Implementation on September 16, 2026 with a Ready assessment. A simulated December 1 transfer gives Althea Cassidy in Customer Success the account, with Needs Review because training and QBR dates remain unconfirmed. The September section keeps its original assessment. An open December 18 investigation-time check carries forward even though the second event omits it. Ruben in Implementation remains responsible for that action until evidence supports a change. A new account owner does not silently inherit every action.
 
 ## Where AI helped, and needed checking
 
-I used AI to draft the skill, validator, and fictional data, then asked it to review its own assumptions and test failure cases. The initial validator could select the wrong deal, accept TBD as complete, and hide broken contact links. Those findings drove the revisions. The package now passes 27 automated tests across the validator's behavior and includes five demo fixtures. A separate agent checked two exports without seeing their expected outcomes. That is useful evidence, but a small check, not proof of reliable judgment across real deals.
+I used AI to draft the skill, code, fictional cases, and supporting materials, then asked for review and failure tests. The initial sales validator could select the wrong deal, accept TBD, and hide broken contact links. Those findings drove fixes. All 56 tests pass: 27 sales tests and 29 history tests. Five sales fixtures and a separate two-export agent review checked the distinction between filled fields and reliable evidence. History tests cover saved records and open actions. These checks test specific behavior, not broad model accuracy or the truth of customer statements.
 
 ## What I would change for production
 
-I would agree on the handoff policy with sales and implementation, add read-only CRM access with least-privilege permissions, and limit who can see or retain customer data. For reliability, I would monitor failed runs, validate export freshness, and make retries safe. At scale, I would fetch only the relevant records and handle API limits. For accuracy, I would evaluate labeled real-world cases, review contradictions with a person, and track missed gaps and false alarms. Any future writeback would need human approval and an audit trail.
+I would connect to actual ownership history with limited access, define each team's handoff requirements, and add monitored runs with safe retries. Shared use needs concurrent-write handling and a reviewed correction process; this local prototype expects one writer. Customer notes need access controls and retention rules. At scale I would fetch only relevant changes and handle API limits. I would evaluate labeled real handoffs for missed gaps and false alarms. There is no automatic CRM trigger or writeback today, and manual slide edits do not update saved history.
 
-*Demo data is entirely fictional. It contains no real customer records or personal data.*
+*All demo names, records, dates, and results are fictional. December 1 is a simulated future transfer.*

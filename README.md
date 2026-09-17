@@ -1,95 +1,100 @@
 # Baton
 
-A deal can be Closed Won and still be a messy handoff. The CRM has a few blank
-fields, the rollout plan is buried in call notes, and the implementation team
-has to piece it all together before kickoff.
+An account changes hands, and the next team has to piece the story together again.
+Baton keeps one deck with the account: current context at the front, dated
+handoffs behind it, and open work that stays visible until someone closes it.
 
-I built this skill to review that information and give the receiving team a
-brief they can work from: customer goals, stakeholders, commitments, missing
-details, and questions to resolve.
+The [example deck](examples/terrapin-account-deck.pptx) follows **Terrapin Touring
+Co.** from Sales to Implementation, then to Customer Success. All names, dates and
+results are fictional. The later transfer is a simulated future case.
 
-The demo customer is **Terrapin Touring Co.** All the data is fictional.
-I used Salesforce-style CSVs so the demo can run without
-setting up a Salesforce org.
+## What it does
 
-## Try it
+For each supplied transfer, the skill reviews the records and notes, saves a
+sourced assessment, and rebuilds the deck. Earlier handoffs keep their original
+facts and readiness. The front reflects the latest recorded transfer. Unfinished
+actions carry forward even when the newest handoff doesn't mention them.
 
-You'll need Python 3. There are no packages to install. From the project folder:
+Python checks the records and protects the saved history. The model reviews what
+the evidence means. A filled CRM date can still disagree with a later agreement,
+and a Customer Success handoff needs different checks from a sales one.
+
+This prototype runs when someone supplies a handoff. It does not detect ownership
+changes in Salesforce or write back to CRM. A current-owner field cannot tell it
+who owned the account before or when the change happened.
+
+## Try it in your coding agent
+
+Open this project and use:
+
+> Follow SKILL.md. Read the Terrapin history in examples/handoffs and rebuild its
+> account deck. Show the latest owner, outstanding actions and both dated
+> handoffs. Explain which actions carried forward. Don't change source data.
+
+To record another handoff, provide the existing account history, a transfer
+record with the old and new internal owners/teams and date, and relevant notes.
+Baton needs those facts explicitly. [The schema](references/handoff-schema.md)
+defines the saved record.
+
+## Setup and commands
+
+The validator and history helper use **Python 3.9+ with no extra packages**:
 
 ```sh
 python3 scripts/analyze_handoff.py
+python3 scripts/manage_handoffs.py view --history examples/handoffs/terrapin-history.json
 ```
 
-This runs the data checks and prints the results as JSON. To get the full handoff
-assessment, open the project in your coding agent and use this prompt:
-
-> Follow SKILL.md and assess the Closed Won deal in the data folder. Run the
-> validator, review the CRM records and sales notes, and return the handoff
-> assessment with source references. Don't change the data.
-
-To try the complete handoff example:
+The first command runs the original Closed Won checks. The second shows the
+handoffs and current outstanding work. To add a prepared event to a working copy:
 
 ```sh
-python3 scripts/analyze_handoff.py --data-dir scenarios/ready
+python3 scripts/manage_handoffs.py add --history account-history.json --event new-handoff.json
 ```
 
-If your data contains more than one Closed Won deal, add `--opportunity-id` and
-the deal's ID. The script will list the choices if you leave it out.
+Adding the same event twice won't duplicate its section. Changing an existing
+event ID is rejected. This is a local workflow for one writer at a time.
 
-## How it works
+**Deck generation also needs Node.js and an installed `@oai/artifact-tool`.**
+The Codex environment used for this demo supplies that presentation library.
+Set `BATON_NODE_MODULES` to its Node modules folder if needed, and `BATON_PYTHON`
+if Python isn't available as `python3`. There is no paid API call in the renderer.
+The library is not bundled here; Python alone cannot rebuild the PPTX. Reviewers
+can open the saved example deck directly.
 
-Python handles the repeatable checks: selecting the right deal, joining records,
-checking required fields, and catching broken links or placeholders like `TBD`.
-It reads five files: Account, Opportunity, Contact, OpportunityContactRole, and
-SalesNotes.
+```sh
+node scripts/build_deck.mjs --history examples/handoffs/terrapin-history.json --output account-deck.pptx --demo
+```
 
-The [skill](SKILL.md) tells the model how to read the notes, compare them with the
-CRM, and write the brief. For example, wanting to start in October doesn't mean
-both teams agreed to an October start. Being the primary contact doesn't make
-someone the executive sponsor.
+The included Project Kickoff template provides the layout. See
+[deck output guidance](references/deck-output.md) for the evidence rules.
+Corrections to saved history need an explicit reviewed process. Manual
+PowerPoint edits won't update the history used for the next rebuild.
 
-For this demo, a missing sponsor, timeline, or success criteria blocks the
-handoff. Other gaps need review. The model also checks for conflicting evidence,
-so a deal that passes the Python checks can still need review. Nothing is written
-back to the source data.
-
-## Scenarios and checks
-
-There are five [demo cases](docs/scenarios.md): an incomplete handoff, a complete
-one, a missing next step, conflicting notes, and a broken contact link. The
-conflicting-notes case is useful to walk through: all the CRM fields are filled,
-but the rollout dates no longer agree with the notes.
-
-Run the tests with:
+## Checks and examples
 
 ```sh
 python3 -B -m unittest discover -s tests -v
 ```
 
-The tests check deal selection, missing fields, placeholders, bad input, and
-record links. The [validation notes](docs/validation-notes.md) cover what broke
-in the first version, what changed, and how I checked the model's assessment.
+Tests cover the sales validator and handoff-history behavior. The original
+[five data scenarios](docs/scenarios.md) still exercise missing fields, complete
+records, conflicting notes and broken links. The saved Markdown
+[assessments](examples/blocked-assessment.md) show the reasoning behind those
+checks. The account deck is now the main output.
 
 ## Demo and write-up
 
-The [one-pager](docs/one-pager.pdf) explains the design decisions and what I'd
-change for production. The [summary slide](docs/demo-slide.pptx) covers the
-workflow and the conflicting-dates example.
-There's also a [slide image](docs/demo-slide.png) you can open for screen sharing.
+The [one-pager](docs/one-pager.pdf) and [single summary slide](docs/demo-slide.pptx)
+explain the project. They are separate from the account handoff deck.
+The [Loom walkthrough](docs/loom-walkthrough.md), [interview prep](docs/interview-prep.md)
+and [submission checklist](docs/submission-checklist.md) cover the presentation.
+The recording is still to come.
 
-Saved examples include an [incomplete handoff](examples/blocked-assessment.md)
-and a [handoff with conflicting notes](examples/conflicting-notes-assessment.md).
-These are outputs from example runs, not live results.
+## What I'd do next in production
 
-The recording is still to come. The [demo walkthrough](docs/loom-walkthrough.md)
-sets out what to show in under five minutes. The
-[interview notes](docs/interview-prep.md) cover the discussion questions, and the
-[submission checklist](docs/submission-checklist.md) tracks what's left to send.
-
-## What's still missing
-
-This is a prototype. The fields and readiness rules are assumptions for the
-exercise, and the IDs are mock keys. Before a real team used it, I'd agree on
-their handoff requirements, connect their systems with the right access controls,
-and test against a wider set of deals. Any future CRM updates would need human
-review. I haven't measured time savings or business impact yet.
+Agree on each receiving team's requirements, connect to account ownership
+history with limited permissions, and handle concurrent updates and retries.
+I'd add reviewed corrections, access controls and retention for customer
+records, then evaluate more real handoffs for missed gaps and false alarms.
+I haven't measured time savings or customer impact.

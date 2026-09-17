@@ -1,177 +1,169 @@
 # Interview prep
 
-Use these as speaking notes. The goal is to explain your decisions comfortably,
-not memorize every sentence. The statements below describe this project; add
-personal experience only if it is something you actually did.
+Use these as speaking notes, not a script to memorize. Describe the actual
+AI-assisted process. Add personal experience only when it is something you did.
 
 ## Your 30-second introduction
 
-I built Baton, a skill for the point where a deal moves from
-sales to implementation or customer success. It reads CRM-style records and
-sales notes, checks what's missing, and gives the receiving team a brief with
-the context and questions they need before kickoff. Python handles the record
-checks. The model handles the language in the notes. I used a fictional customer
-so I could test different handoff problems without using employer data.
+I built Baton to keep an account's story together when ownership changes.
+It produces one deck with the current owner and outstanding work at the front,
+then a dated section for each handoff. Earlier sections keep the facts and
+assessment from that time. The skill reviews the evidence, Python protects the
+records, and the deck rebuilds from saved history. The demo follows a fictional
+account through Sales, Implementation, and Customer Success.
 
-## 1. Why does this matter to a revenue team?
+## 1. Why does this matter to a GTM team?
 
-**Your answer**
+Each team change can make someone reconstruct the customer story. A receiving
+teammate needs more than a name in an owner field. They need to know what the
+customer expects and which work is still open. I wanted that context to survive
+the transfer instead of creating another disconnected document.
 
-A signed deal can leave a lot of unanswered questions for the team that takes
-over. They need to know what the customer is trying to achieve, who owns the
-work, and what sales led the customer to expect. That information is often split
-between CRM fields and call notes. I wanted to reduce the time spent piecing it
-together and make gaps visible before kickoff. I haven't measured the savings
-yet, so I'd treat that as a hypothesis to test with the receiving team.
+**Show:** Althea owns the account in the latest view, while Ruben's investigation
+check is still open. Account ownership and action ownership are separate.
 
-**Show:** the default Terrapin handoff. It has three missing core fields, but
-the notes still contain useful details about SSO and identity-team notice.
-
-**If they ask how you'd measure value:** compare preparation time and the number
-of clarification requests on similar handoffs. Also track missed commitments
-and whether reviewers agree with the agent's findings. A longer-term measure
-could be time to the first agreed customer outcome; don't attribute every change
-in onboarding speed to this tool.
+**If they ask about value:** I haven't measured it yet. I would compare handoff
+preparation time, clarification requests and dropped follow-up work on similar
+accounts. I would also ask receiving teams whether the deck helped them find
+the right evidence. Faster onboarding alone would not prove this tool caused it.
 
 ## 2. What did you assume?
 
-**Your answer**
+A person supplies the transfer date, the old and new internal owners and teams,
+and the supporting records. The prototype does not infer a transfer from today's
+CRM owner or detect one automatically. Internal employees are distinct from
+customer contacts such as Scarlet and Casey.
 
-I assumed the deal is already Closed Won and the receiving team is preparing
-for kickoff. For this version, the sponsor, implementation timeline, and success
-criteria have to be documented in the CRM. I assumed stakeholders belong to the
-same account as the deal. Those are choices for the demo, not rules every company
-uses. I'd validate them with sales and the receiving team before rolling this out.
+The sales profile assumes a Closed Won deal and requires a documented sponsor,
+timeline and success criteria. Those rules don't automatically apply to Customer
+Success. Later transfers get a generic review of responsibilities, commitments,
+risks and next actions. I'd agree on team-specific requirements before production.
 
-**Be ready to explain:** missing next steps or a technical owner require review
-in this version. Some teams would make those blocking requirements too. The
-field priorities should follow the actual handoff process.
+**Why CSVs?** The assignment accepts structured files. Five Salesforce-style
+exports give repeatable external inputs without real credentials or employer
+data. The object relationships are recognizable, but these are mock keys and
+custom fields, not a promised Salesforce import package.
 
-**If they ask why CSVs:** the exercise accepts structured files. CSVs let me
-prove the workflow with repeatable inputs and no credentials. The current
-integration reads files; it does not connect to Salesforce. The object names
-and relationships are Salesforce-style, with a mock notes export and custom fields.
+**Why is December in the deck?** It's a simulated future transfer that lets me
+demonstrate how a second handoff changes the current view. No real December
+event or customer outcome is being claimed.
 
-## 3. Why a skill plus a script?
+## 3. Why a skill, Python, and saved history?
 
-**Your answer**
+Different parts need different checks. Python can reliably select a deal,
+validate links, reject a duplicate or conflicting event, and keep an open action
+visible. The model adds context: a filled date might disagree with an approved
+change in the notes, and rollout completion doesn't prove every success goal.
+The skill tells it how to distinguish those facts and cite evidence.
 
-Some of this work should behave the same way every time. Selecting the right
-opportunity, checking whether a field is empty, and verifying contact links are
-good jobs for a script. Understanding whether a customer requested a date or
-actually agreed to it needs context. The skill tells the model how to review
-that evidence, cite its sources, and return the same useful structure each time.
+The saved history is the source for rendering. Each event includes owners,
+timestamps, an assessment, actions and source references. The front of the deck
+uses the latest event and all outstanding work. Dated sections use their original
+events. A rebuild preserves earlier content even if pagination changes.
 
-**The data flow:** five CSV files feed the Python validator. It returns the
-selected account and opportunity, the linked stakeholders, and the notes with
-their IDs. The model uses that evidence to write the handoff assessment.
+**Why not edit the old PowerPoint?** Manual edits are hard to reconcile with
+sources and can erase past context. Here the deck is an output. Editing a slide
+does not change the saved history, and the next rebuild uses that history.
 
-**Why not just paste everything into a model?** Record selection and joins would
-be harder to verify, and repeated runs could make different choices. The script
-makes those steps explicit and testable.
+**What do I need to run it?** Python 3 runs the validator and history helper with
+no extra packages. Rendering the PPTX also needs Node.js and `@oai/artifact-tool`,
+which the demo's Codex environment supplies. That library is not bundled with
+the repo. A reviewer can open the saved deck without rebuilding it. I would not
+claim Python alone builds the deck or that every public environment includes
+the presentation library.
 
-**Why not just a script?** A nonblank field can still be wrong. In the conflict
-example, CRM says the pilot starts October 5. A note records an approved move
-to November 2 and says the remaining dates need replanning. Python preserves
-both sources. The skill explains why the handoff still needs review.
-
-**Why not MCP?** MCP could provide live data. It would not replace the handoff
-policy or the need to interpret evidence. I started with files to test those
-decisions before adding authentication and integration failure modes.
-
-**What you left out:** a custom UI, automatic CRM updates, a live connector,
-and a numerical quality score. The three statuses are easier to explain for
-this small demo.
+**What is deliberately out of scope?** Live ownership triggers, CRM writeback,
+concurrent users, an automatic correction workflow, and a policy for every team.
+This is a local prototype with one writer at a time.
 
 ## 4. Where did AI help, and where didn't you trust it?
 
-**Your answer**
+I used AI for the skill, code, fictional cases and supporting materials, then
+asked it to review the work and test failures. The original sales validator
+selected the first opportunity, accepted TBD, and could hide a broken contact
+link. The fixes made deal selection explicit, recognized placeholders, and
+stopped on invalid relationships. Changing the rule from two missing fields to
+any missing core prerequisite was also a business-policy choice, not just a bug fix.
 
-I used AI to help draft the skill, the validator, the mock data, and the tests.
-I also used it to review the first version. That review found real problems:
-the script picked the first opportunity, accepted placeholders like TBD, and
-could hide a broken contact link. I had those behaviors corrected and tested.
-For the notes, I want the model to extract context, but every important claim
-needs a source and uncertainty needs to stay visible.
+**The checks mean different things:**
 
-**Your strongest example:** the original rule blocked a handoff only when two
-fields were empty. The current rule treats any missing core prerequisite as
-blocking. This was a business-policy change, not just a coding fix.
+- All 56 Python tests pass: 27 for the sales validator and 29 for handoff history.
+- The original 27 sales tests check deterministic code behavior. Five sales
+  fixtures cover complete, incomplete, review, conflicting and invalid inputs.
+- A separate agent assessed two unnamed exports without their expected answers.
+  It returned Ready for complete evidence and Needs Review for conflicting notes.
+  That is a small behavioral check, not a broad evaluation of model accuracy.
+- The history tests check record order, stable IDs, owner continuity and action
+  carry-forward. They do not prove a recorded statement is true or authorized.
+- The rendered deck needs visual review too. A structurally valid PPTX can still
+  have unreadable text or omit context.
+- A separate assessment-only check of the raw later-transfer inputs returned
+  Needs Review, the correct CS owner and three open actions. It kept the
+  investigation goal outstanding and flagged missing recording metadata.
+  That is one additional case, not a general accuracy result.
 
-**Know exactly what was checked:**
+**A useful evidence example:** CRM says the pilot starts October 5. A note records
+an approved move to November 2 and says the remaining milestones need re-planning.
+The original sales checks say Ready because the fields are populated. The skill
+returns Needs Review and cites both sources. This remains a supporting test case,
+separate from the two-transfer account-deck demonstration.
 
-- 27 automated tests cover the Python behavior, including invalid inputs and
-  evidence preservation. They do not measure model accuracy.
-- Five fixture sets demonstrate different outcomes.
-- An independent agent reviewed two unnamed exports without the expected answers.
-  It returned Ready for the complete case and Needs Review for the conflicting case.
-  That is a small behavioral check, not a production evaluation.
-
-**Avoid saying:** "The tests prove the AI is accurate," "I wrote all the code
-myself," or "I manually checked every test." Explain the actual AI-assisted process.
-
-**If they ask about hallucination:** a Decision Maker is not automatically an
-executive sponsor. A CIO mentioned in a note is not automatically a project owner.
-The skill requires those distinctions and keeps unsupported details Not Confirmed.
-Those instructions reduce risk; they don't guarantee perfect model behavior.
+**Avoid claiming:** that you hand-wrote all code, manually checked every test, or
+proved the AI is accurate. Explain the AI-assisted review and its limits.
 
 ## 5. What would you harden for production?
 
-**Your answer**
-
-First I'd agree on the handoff requirements and test a larger set of real,
-appropriately protected examples with the receiving team. Then I'd add a live
-connector with limited permissions, clear error handling, and logs so we can
-explain each result. I'd keep a person responsible for resolving contradictions
-and approving any CRM changes. I wouldn't turn the demo's assumptions into a
-company-wide gate without that work.
-
-| Area | Concrete next step |
+| Area | What I would do |
 | --- | --- |
-| Reliability | Validate changing schemas, handle API failures and retries, and make repeat runs safe. |
-| Security | Use least-privilege access, protect customer notes, set retention rules, and treat note text as untrusted input. |
-| Scale | Process the selected deal and related records instead of validating a whole CSV export each time. Trigger runs from the real handoff process. |
-| Accuracy | Build labeled examples with edge cases, measure missed gaps and false alarms, and review model or prompt changes against that set. |
+| Reliability | Connect to real transfer history, monitor failed runs, add safe retries and concurrent-write handling, and design a reviewed correction process. |
+| Security | Use least-privilege access, protect notes and decks, set retention rules, and treat source text as evidence rather than instructions. |
+| Scale | Fetch relevant account changes instead of whole exports, handle API limits, and rebuild only affected accounts. |
+| Accuracy | Agree on team policies, evaluate labeled real handoffs, measure missed gaps and false alarms, and keep a person responsible for unresolved commitments. |
+
+The local history file is not tamper-proof. The helper prevents certain bad
+updates through its interface; someone with file access can still edit it.
+Any future CRM writeback needs authorization and a traceable review process.
 
 ## Questions they may push on
 
-**Why block a handoff if the answer is in the notes?**
+**Why does Ruben still own an action after Althea gets the account?**
 
-That's the conservative policy I chose for this POC. The tool surfaces the note
-so a person can confirm it and update the record. It keeps "we found something
-useful" separate from "the required handoff field is complete." A different
-team might choose another policy, but it should be an explicit choice.
+The action had Ruben as its explicit owner. The later event did not close or
+reassign it, so it remains open with him. Account ownership does not silently
+change action responsibility. The receiving team can review and record a supported update.
 
-**Does Ready mean the implementation can start?**
+**What if the same handoff arrives twice?**
 
-It means the supplied evidence is ready for handoff under these rules.
-Dependencies like SSO still need to be completed on the agreed schedule.
+An identical event ID and content is a no-op. Different content with the same ID
+is a conflict. A retry must reuse the recorded timestamps. This protects local
+append behavior; it does not solve concurrent writes across a production system.
 
-**What happens when the script says Ready but the model finds a conflict?**
+**What if the owner chain is broken or the events are out of order?**
 
-The final result becomes Needs Review, with both sources cited. The model cannot
-lower a blocking or review result by pretending a note filled a CRM field.
+The helper rejects it. The user needs to correct the input or use a reviewed
+history-correction process. The skill must not invent a missing transfer.
 
-**What if the data is broken?**
+**Does Needs Review stop an ownership change?**
 
-The script returns an input error and no assessment. A broken join is different
-from a legitimate deal that is missing handoff information.
+No. It describes the supplied handoff evidence. Baton does not approve, execute,
+or reverse ownership changes in CRM. The receiving team's process decides what
+to do with the finding.
 
-**How do you know the newest note is right?**
+**Why keep a September Ready section if December Needs Review?**
 
-A later date alone isn't enough. The conflict example explicitly records joint
-approval of a schedule change. Even then, the CRM and downstream milestones
-still need reconciliation. The agent explains the disagreement; it doesn't
-silently choose a source and update the record.
+They assess different transfers using the evidence available at those times.
+Changing the old status would erase that distinction. The latest overview makes
+the current recorded situation clear while dated sections preserve the history.
 
-## Rehearse in this order
+**What does the legacy sales validator still do?**
 
-1. Explain the business problem in 30 seconds without mentioning Python.
-2. Walk through the CSV-to-script-to-skill flow in one minute.
-3. Show the conflicting-dates example and explain the two readiness results.
-4. Name one concrete defect found in the first version and how it was tested.
-5. Give one production improvement in each of the four areas above.
+It checks initial Closed Won readiness. Missing core fields block that sales
+handoff, notes cannot silently fill CRM gaps, and broken inputs stop assessment.
+It does not determine the readiness of a later internal transfer.
 
-If you can't explain a line of code or a rule, say what you understand and inspect
-it. A clear account of the tradeoffs is more useful than trying to sound fluent
-in implementation details you haven't learned yet.
+## Rehearse
+
+Explain the problem in 30 seconds without mentioning implementation tools.
+Then show the current owner, a carried action and the preserved September section.
+Be able to name one failure AI introduced and the check added for it. Finish
+with one production improvement and one honest limit of the prototype.

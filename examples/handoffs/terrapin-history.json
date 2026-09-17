@@ -1,0 +1,582 @@
+{
+  "schema_version": 1,
+  "account": {
+    "id": "0015g00002ABCDeAAH",
+    "name": "Terrapin Touring Co."
+  },
+  "events": [
+    {
+      "handoff_id": "terrapin-2026-09-16-sales-implementation",
+      "account_id": "0015g00002ABCDeAAH",
+      "account_name": "Terrapin Touring Co.",
+      "effective_at": "2026-09-16T09:00:00-05:00",
+      "recorded_at": "2026-09-16T10:00:00-05:00",
+      "handoff_type": "sales_to_implementation",
+      "from": {
+        "owner_id": "0055g00000OWNERAAR",
+        "owner_name": "Samson Delilah",
+        "team": "Sales"
+      },
+      "to": {
+        "owner_id": "005MOCKIMPLRUBEN",
+        "owner_name": "Ruben Cherise",
+        "team": "Implementation"
+      },
+      "reason": "Closed Won purchase moves into the agreed implementation plan.",
+      "source_ids": [
+        "ownership-september"
+      ],
+      "assessment": {
+        "readiness": "Ready",
+        "baseline": "Ready",
+        "summary": "Agreed owners, rollout dates and measures support implementation. SSO remains a rollout gate; the December investigation-time goal is still due.",
+        "goals": [
+          {
+            "text": "Unify security operations across six venues and provide monthly executive reporting.",
+            "source_ids": [
+              "account",
+              "confirmation"
+            ]
+          }
+        ],
+        "stakeholders": [
+          {
+            "text": "Scarlet Begonia: executive sponsor. Casey Jones: customer technical owner. Jack Straw: procurement contact.",
+            "source_ids": [
+              "confirmation",
+              "contact-scarlet",
+              "contact-casey",
+              "contact-jack"
+            ]
+          }
+        ],
+        "commitments": [
+          {
+            "text": "SSO Oct 2; corporate pilot Oct 5; venues Nov 2–30. By Dec 18, mean investigation time ≤42 minutes from a 60-minute baseline.",
+            "source_ids": [
+              "confirmation"
+            ]
+          }
+        ],
+        "gaps": [],
+        "risks": [
+          {
+            "text": "SSO must pass before broad rollout; identity work needs two weeks’ notice.",
+            "source_ids": [
+              "confirmation"
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "id": "terrapin-kickoff",
+          "text": "Schedule implementation kickoff.",
+          "owner": "Casey Jones (customer)",
+          "due": "2026-09-17",
+          "status": "open",
+          "source_ids": [
+            "confirmation"
+          ]
+        },
+        {
+          "id": "terrapin-identity-notice",
+          "text": "Send the identity-team configuration request.",
+          "owner": "Casey Jones (customer)",
+          "due": "2026-09-18",
+          "status": "open",
+          "source_ids": [
+            "confirmation"
+          ]
+        },
+        {
+          "id": "terrapin-rollout-check",
+          "text": "Verify six venues report to one dashboard and ≥95% of priority alerts arrive within 15 minutes.",
+          "owner": "Ruben Cherise (Implementation)",
+          "due": "2026-11-30",
+          "status": "open",
+          "source_ids": [
+            "confirmation",
+            "ownership-september"
+          ]
+        },
+        {
+          "id": "terrapin-investigation-target",
+          "text": "Verify mean investigation time ≤42 minutes against the agreed 60-minute baseline.",
+          "owner": "Ruben Cherise (Implementation)",
+          "due": "2026-12-18",
+          "status": "open",
+          "source_ids": [
+            "confirmation",
+            "ownership-september"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "ownership-september",
+          "kind": "Fictional internal handoff record",
+          "location": "snapshots/2026-09-16-ownership.json",
+          "record_id": "mock-ownership-2026-09-16",
+          "date": "2026-09-16",
+          "excerpt": "Samson Delilah transfers internal account ownership to Ruben Cherise in Implementation on September 16, 2026.",
+          "account_id": "0015g00002ABCDeAAH",
+          "sha256": "3dc5ef097a53439e3b86a5cd1f2921e75c03ca31e38c8a06403113b9bc4b2b7c",
+          "snapshot": {
+            "handoff_id": "terrapin-2026-09-16-sales-implementation",
+            "account_id": "0015g00002ABCDeAAH",
+            "effective_at": "2026-09-16T09:00:00-05:00",
+            "handoff_type": "sales_to_implementation",
+            "from": {
+              "owner_id": "0055g00000OWNERAAR",
+              "owner_name": "Samson Delilah",
+              "team": "Sales"
+            },
+            "to": {
+              "owner_id": "005MOCKIMPLRUBEN",
+              "owner_name": "Ruben Cherise",
+              "team": "Implementation"
+            },
+            "reason": "Closed Won purchase moves into the agreed implementation plan.",
+            "id": "mock-ownership-2026-09-16",
+            "date": "2026-09-16",
+            "fictional": true,
+            "note": "Fictional POC ownership event, not a live CRM update. Samson Delilah is the mock display name for seller OwnerId 0055g00000OWNERAAR. Ruben Cherise is an invented internal implementation employee; neither employee is a customer contact. Ruben accepts rollout verification and the December 18 investigation-time measurement task. Customer commitments and dates are copied from the ready-scenario September 10 confirmation note.",
+            "actions": [
+              {
+                "id": "terrapin-kickoff",
+                "text": "Schedule implementation kickoff.",
+                "owner": "Casey Jones (customer)",
+                "due": "2026-09-17",
+                "status": "open",
+                "source_ids": [
+                  "confirmation"
+                ]
+              },
+              {
+                "id": "terrapin-identity-notice",
+                "text": "Send the identity-team configuration request.",
+                "owner": "Casey Jones (customer)",
+                "due": "2026-09-18",
+                "status": "open",
+                "source_ids": [
+                  "confirmation"
+                ]
+              },
+              {
+                "id": "terrapin-rollout-check",
+                "text": "Verify six venues report to one dashboard and ≥95% of priority alerts arrive within 15 minutes.",
+                "owner": "Ruben Cherise (Implementation)",
+                "due": "2026-11-30",
+                "status": "open",
+                "source_ids": [
+                  "confirmation",
+                  "ownership-september"
+                ]
+              },
+              {
+                "id": "terrapin-investigation-target",
+                "text": "Verify mean investigation time ≤42 minutes against the agreed 60-minute baseline.",
+                "owner": "Ruben Cherise (Implementation)",
+                "due": "2026-12-18",
+                "status": "open",
+                "source_ids": [
+                  "confirmation",
+                  "ownership-september"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "account",
+          "kind": "CRM snapshot",
+          "location": "snapshots/ready/Account.csv",
+          "record_id": "0015g00002ABCDeAAH",
+          "date": "2026-09-16",
+          "excerpt": "Standardize security operations across six acquired venues and improve executive reporting.",
+          "account_id": "0015g00002ABCDeAAH",
+          "sha256": "5ab777a31b94d8506b695c60c417068ff154e5a54fcbc480079d131cbb5a3ea0",
+          "snapshot": {
+            "Id": "0015g00002ABCDeAAH",
+            "Name": "Terrapin Touring Co.",
+            "Website": "https://terrapintouring.example",
+            "Industry": "Entertainment",
+            "Type": "Customer",
+            "BillingCity": "Chicago",
+            "BillingState": "Illinois",
+            "BillingCountry": "United States",
+            "NumberOfEmployees": "2400",
+            "AnnualRevenue": "485000000",
+            "OwnerId": "0055g00000OWNERAAR",
+            "Customer_Goals__c": "Standardize security operations across six acquired venues and improve executive reporting.",
+            "Implementation_Notes__c": "Corporate pilot before six-venue expansion. Casey Jones owns the technical rollout. Identity-team notice is due 2026-09-18, allowing two weeks before SSO validation on 2026-10-02. SSO must pass before broad rollout."
+          }
+        },
+        {
+          "id": "opportunity",
+          "kind": "CRM snapshot",
+          "location": "snapshots/ready/Opportunity.csv",
+          "record_id": "0065g00003OPP001AAH",
+          "date": "2026-09-16",
+          "excerpt": "Agreed 2026-09-10: identity-team notice by 2026-09-18; SSO validation 2026-10-02; corporate pilot starts 2026-10-05; venue rollout starts 2026-11-02 and completes 2026-11-30.",
+          "account_id": "0015g00002ABCDeAAH",
+          "sha256": "a05e8a265a664ea289e796614b9b0ab6c0156f1a4a7f699e4a3250d47f3c0ef1",
+          "snapshot": {
+            "Id": "0065g00003OPP001AAH",
+            "AccountId": "0015g00002ABCDeAAH",
+            "Name": "Terrapin Touring - Wall of Sound Security",
+            "StageName": "Closed Won",
+            "Amount": "185000",
+            "CloseDate": "2026-09-10",
+            "OwnerId": "0055g00000OWNERAAR",
+            "Type": "New Customer",
+            "LeadSource": "Outbound",
+            "NextStep": "Casey Jones to schedule kickoff by 2026-09-17 and send the identity-team configuration request by 2026-09-18.",
+            "Description": "Wall of Sound security platform purchase following discovery and technical validation.",
+            "Probability": "100",
+            "ForecastCategoryName": "Closed",
+            "Primary_Business_Problem__c": "Security teams use inconsistent workflows across six venues and leadership lacks consolidated visibility.",
+            "Executive_Sponsor__c": "Scarlet Begonia",
+            "Technical_Owner__c": "Casey Jones",
+            "Implementation_Timeline__c": "Agreed 2026-09-10: identity-team notice by 2026-09-18; SSO validation 2026-10-02; corporate pilot starts 2026-10-05; venue rollout starts 2026-11-02 and completes 2026-11-30.",
+            "Success_Criteria__c": "By 2026-11-30, all six venues report to one dashboard and at least 95% of priority alerts appear within 15 minutes; by 2026-12-18, mean investigation time is at most 42 minutes against the agreed 60-minute baseline.",
+            "Handoff_Status__c": "Pending"
+          }
+        },
+        {
+          "id": "confirmation",
+          "kind": "Sales Notes snapshot",
+          "location": "snapshots/ready/SalesNotes.csv",
+          "record_id": "a0N5g00001NOTE04AAH",
+          "date": "2026-09-10",
+          "excerpt": "Scarlet explicitly accepted executive sponsorship and will resolve cross-team escalations. Casey remains technical owner. Scarlet, Casey, and the Wall of Sound implementation lead agreed the rollout plan and planning-support scope: Casey sends identity-team notice by 2026-09-18, providing at least two weeks before SSO validation on 2026-10-02. Corporate pilot begins 2026-10-05; venue rollout begins 2026-11-02 and finishes 2026-11-30. SSO must pass before broad rollout. They agreed that by 2026-11-30 all six venues will report to one dashboard and at least 95% of priority alerts will appear within 15 minutes. By 2026-12-18 mean investigation time must be at most 42 minutes against the agreed 60-minute baseline. The implementation lead accepted initial rollout-planning assistance. Casey will schedule kickoff by 2026-09-17. These specific agreements resolve the open timeline and success-metric questions in the earlier notes.",
+          "account_id": "0015g00002ABCDeAAH",
+          "sha256": "172565c494ad895dc163b4f56ac440e6fbe8ce1c7bad2143f516af8b5602bfee",
+          "snapshot": {
+            "Id": "a0N5g00001NOTE04AAH",
+            "OpportunityId": "0065g00003OPP001AAH",
+            "NoteDate": "2026-09-10",
+            "NoteType": "Handoff Confirmation",
+            "CreatedById": "0055g00000OWNERAAR",
+            "Subject": "Wall of Sound Handoff Plan Confirmed",
+            "Body": "Scarlet explicitly accepted executive sponsorship and will resolve cross-team escalations. Casey remains technical owner. Scarlet, Casey, and the Wall of Sound implementation lead agreed the rollout plan and planning-support scope: Casey sends identity-team notice by 2026-09-18, providing at least two weeks before SSO validation on 2026-10-02. Corporate pilot begins 2026-10-05; venue rollout begins 2026-11-02 and finishes 2026-11-30. SSO must pass before broad rollout. They agreed that by 2026-11-30 all six venues will report to one dashboard and at least 95% of priority alerts will appear within 15 minutes. By 2026-12-18 mean investigation time must be at most 42 minutes against the agreed 60-minute baseline. The implementation lead accepted initial rollout-planning assistance. Casey will schedule kickoff by 2026-09-17. These specific agreements resolve the open timeline and success-metric questions in the earlier notes."
+          }
+        },
+        {
+          "id": "contact-scarlet",
+          "kind": "CRM snapshot",
+          "location": "snapshots/ready/Contact.csv",
+          "record_id": "0035g00004CON001AAH",
+          "date": "2026-09-16",
+          "excerpt": "Scarlet Begonia — VP, Information Security",
+          "account_id": "0015g00002ABCDeAAH",
+          "sha256": "11a3a3a9232cfe856976172d0cf58155b7bf25004af587734a8c330bf2994e5a",
+          "snapshot": {
+            "Id": "0035g00004CON001AAH",
+            "AccountId": "0015g00002ABCDeAAH",
+            "FirstName": "Scarlet",
+            "LastName": "Begonia",
+            "Title": "VP, Information Security",
+            "Department": "Information Security",
+            "Email": "scarlet.begonia@terrapintouring.example",
+            "Phone": "",
+            "OwnerId": "0055g00000OWNERAAR"
+          }
+        },
+        {
+          "id": "contact-casey",
+          "kind": "CRM snapshot",
+          "location": "snapshots/ready/Contact.csv",
+          "record_id": "0035g00004CON002AAH",
+          "date": "2026-09-16",
+          "excerpt": "Casey Jones — Director, Security Engineering",
+          "account_id": "0015g00002ABCDeAAH",
+          "sha256": "11a3a3a9232cfe856976172d0cf58155b7bf25004af587734a8c330bf2994e5a",
+          "snapshot": {
+            "Id": "0035g00004CON002AAH",
+            "AccountId": "0015g00002ABCDeAAH",
+            "FirstName": "Casey",
+            "LastName": "Jones",
+            "Title": "Director, Security Engineering",
+            "Department": "Information Security",
+            "Email": "casey.jones@terrapintouring.example",
+            "Phone": "",
+            "OwnerId": "0055g00000OWNERAAR"
+          }
+        },
+        {
+          "id": "contact-jack",
+          "kind": "CRM snapshot",
+          "location": "snapshots/ready/Contact.csv",
+          "record_id": "0035g00004CON003AAH",
+          "date": "2026-09-16",
+          "excerpt": "Jack Straw — Procurement Manager",
+          "account_id": "0015g00002ABCDeAAH",
+          "sha256": "11a3a3a9232cfe856976172d0cf58155b7bf25004af587734a8c330bf2994e5a",
+          "snapshot": {
+            "Id": "0035g00004CON003AAH",
+            "AccountId": "0015g00002ABCDeAAH",
+            "FirstName": "Jack",
+            "LastName": "Straw",
+            "Title": "Procurement Manager",
+            "Department": "Procurement",
+            "Email": "jack.straw@terrapintouring.example",
+            "Phone": "",
+            "OwnerId": "0055g00000OWNERAAR"
+          }
+        }
+      ]
+    },
+    {
+      "handoff_id": "terrapin-2026-12-01-implementation-cs",
+      "account_id": "0015g00002ABCDeAAH",
+      "account_name": "Terrapin Touring Co.",
+      "effective_at": "2026-12-01T09:00:00-06:00",
+      "recorded_at": "2026-12-01T10:00:00-06:00",
+      "handoff_type": "internal_transfer",
+      "from": {
+        "owner_id": "005MOCKIMPLRUBEN",
+        "owner_name": "Ruben Cherise",
+        "team": "Implementation"
+      },
+      "to": {
+        "owner_id": "005MOCKCSALTHEA",
+        "owner_name": "Althea Cassidy",
+        "team": "Customer Success"
+      },
+      "reason": "Implementation milestone review transfers ongoing customer ownership to Customer Success.",
+      "source_ids": [
+        "ownership-december"
+      ],
+      "assessment": {
+        "readiness": "Needs Review",
+        "baseline": null,
+        "summary": "Six venues are reporting and 96% of priority alerts arrive within 15 minutes. Training and QBR dates remain unconfirmed; the Dec 18 goal remains open.",
+        "goals": [
+          {
+            "text": "Maintain a single security view across six venues and monthly executive reporting.",
+            "source_ids": [
+              "ownership-december",
+              "account"
+            ]
+          }
+        ],
+        "stakeholders": [
+          {
+            "text": "Althea Cassidy owns Customer Success. Scarlet remains sponsor; Casey remains the customer technical owner.",
+            "source_ids": [
+              "ownership-december"
+            ]
+          }
+        ],
+        "commitments": [
+          {
+            "text": "All six venues report; 96% of priority alerts arrive within 15 minutes. The ≤42-minute investigation target remains due Dec 18.",
+            "source_ids": [
+              "ownership-december",
+              "confirmation"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "text": "Customer training session and first QBR date: Not Confirmed.",
+            "source_ids": [
+              "ownership-december"
+            ]
+          }
+        ],
+        "risks": [
+          {
+            "text": "Do not treat rollout metrics as proof of the investigation-time goal; its final measurement is still outstanding.",
+            "source_ids": [
+              "ownership-december"
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "id": "terrapin-kickoff",
+          "text": "Schedule implementation kickoff.",
+          "owner": "Casey Jones (customer)",
+          "due": "2026-09-17",
+          "status": "done",
+          "source_ids": [
+            "ownership-december"
+          ]
+        },
+        {
+          "id": "terrapin-identity-notice",
+          "text": "Send the identity-team configuration request.",
+          "owner": "Casey Jones (customer)",
+          "due": "2026-09-18",
+          "status": "done",
+          "source_ids": [
+            "ownership-december"
+          ]
+        },
+        {
+          "id": "terrapin-rollout-check",
+          "text": "Verify six venues report to one dashboard and ≥95% of priority alerts arrive within 15 minutes.",
+          "owner": "Ruben Cherise (Implementation)",
+          "due": "2026-11-30",
+          "status": "done",
+          "source_ids": [
+            "ownership-december"
+          ]
+        },
+        {
+          "id": "terrapin-training",
+          "text": "Confirm the customer training session and record the agreed date.",
+          "owner": "Althea Cassidy (Customer Success)",
+          "due": null,
+          "status": "open",
+          "source_ids": [
+            "ownership-december"
+          ]
+        },
+        {
+          "id": "terrapin-qbr",
+          "text": "Confirm the first QBR date with the customer.",
+          "owner": "Althea Cassidy (Customer Success)",
+          "due": null,
+          "status": "open",
+          "source_ids": [
+            "ownership-december"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "ownership-december",
+          "kind": "Fictional internal handoff record",
+          "location": "snapshots/2026-12-01-implementation-transfer.json",
+          "record_id": "mock-ownership-2026-12-01",
+          "date": "2026-12-01",
+          "excerpt": "The November 30 implementation review confirms all six venues reporting and 96% of priority alerts within 15 minutes. The December 18 investigation-time target remains due. Training and QBR dates are Not Confirmed.",
+          "account_id": "0015g00002ABCDeAAH",
+          "sha256": "918fbd3434dd6572e0b8b6952e4fa410f023669bf7526e2b63c739673803f6f1",
+          "snapshot": {
+            "handoff_id": "terrapin-2026-12-01-implementation-cs",
+            "account_id": "0015g00002ABCDeAAH",
+            "effective_at": "2026-12-01T09:00:00-06:00",
+            "handoff_type": "internal_transfer",
+            "from": {
+              "owner_id": "005MOCKIMPLRUBEN",
+              "owner_name": "Ruben Cherise",
+              "team": "Implementation"
+            },
+            "to": {
+              "owner_id": "005MOCKCSALTHEA",
+              "owner_name": "Althea Cassidy",
+              "team": "Customer Success"
+            },
+            "reason": "Implementation milestone review transfers ongoing customer ownership to Customer Success.",
+            "id": "mock-ownership-2026-12-01",
+            "date": "2026-12-01",
+            "fictional": true,
+            "note": "Fictional future POC event. Ruben Cherise transfers internal account ownership to Althea Cassidy on December 1, 2026. The November 30 implementation review confirms all six venues reporting to one dashboard and 96% of priority alerts appearing within 15 minutes. SSO validation passed October 2. Kickoff was scheduled September 17; the identity-team configuration request was sent September 18. Scarlet remains executive sponsor and Casey remains customer technical owner. Mean investigation time at most 42 minutes, against the agreed 60-minute baseline, remains due December 18; its final measurement is not yet confirmed. Ruben retains responsibility for that measurement after the ownership transfer. The customer training session and first QBR date are Not Confirmed; Althea accepts both follow-ups. Ready sales evidence does not determine readiness for this later transfer.",
+            "actions": [
+              {
+                "id": "terrapin-kickoff",
+                "text": "Schedule implementation kickoff.",
+                "owner": "Casey Jones (customer)",
+                "due": "2026-09-17",
+                "status": "done",
+                "source_ids": [
+                  "ownership-december"
+                ]
+              },
+              {
+                "id": "terrapin-identity-notice",
+                "text": "Send the identity-team configuration request.",
+                "owner": "Casey Jones (customer)",
+                "due": "2026-09-18",
+                "status": "done",
+                "source_ids": [
+                  "ownership-december"
+                ]
+              },
+              {
+                "id": "terrapin-rollout-check",
+                "text": "Verify six venues report to one dashboard and ≥95% of priority alerts arrive within 15 minutes.",
+                "owner": "Ruben Cherise (Implementation)",
+                "due": "2026-11-30",
+                "status": "done",
+                "source_ids": [
+                  "ownership-december"
+                ]
+              },
+              {
+                "id": "terrapin-training",
+                "text": "Confirm the customer training session and record the agreed date.",
+                "owner": "Althea Cassidy (Customer Success)",
+                "due": null,
+                "status": "open",
+                "source_ids": [
+                  "ownership-december"
+                ]
+              },
+              {
+                "id": "terrapin-qbr",
+                "text": "Confirm the first QBR date with the customer.",
+                "owner": "Althea Cassidy (Customer Success)",
+                "due": null,
+                "status": "open",
+                "source_ids": [
+                  "ownership-december"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "account",
+          "kind": "CRM snapshot",
+          "location": "snapshots/ready/Account.csv",
+          "record_id": "0015g00002ABCDeAAH",
+          "date": "2026-09-16",
+          "excerpt": "Standardize security operations across six acquired venues and improve executive reporting.",
+          "account_id": "0015g00002ABCDeAAH",
+          "sha256": "5ab777a31b94d8506b695c60c417068ff154e5a54fcbc480079d131cbb5a3ea0",
+          "snapshot": {
+            "Id": "0015g00002ABCDeAAH",
+            "Name": "Terrapin Touring Co.",
+            "Website": "https://terrapintouring.example",
+            "Industry": "Entertainment",
+            "Type": "Customer",
+            "BillingCity": "Chicago",
+            "BillingState": "Illinois",
+            "BillingCountry": "United States",
+            "NumberOfEmployees": "2400",
+            "AnnualRevenue": "485000000",
+            "OwnerId": "0055g00000OWNERAAR",
+            "Customer_Goals__c": "Standardize security operations across six acquired venues and improve executive reporting.",
+            "Implementation_Notes__c": "Corporate pilot before six-venue expansion. Casey Jones owns the technical rollout. Identity-team notice is due 2026-09-18, allowing two weeks before SSO validation on 2026-10-02. SSO must pass before broad rollout."
+          }
+        },
+        {
+          "id": "confirmation",
+          "kind": "Sales Notes snapshot",
+          "location": "snapshots/ready/SalesNotes.csv",
+          "record_id": "a0N5g00001NOTE04AAH",
+          "date": "2026-09-10",
+          "excerpt": "Scarlet explicitly accepted executive sponsorship and will resolve cross-team escalations. Casey remains technical owner. Scarlet, Casey, and the Wall of Sound implementation lead agreed the rollout plan and planning-support scope: Casey sends identity-team notice by 2026-09-18, providing at least two weeks before SSO validation on 2026-10-02. Corporate pilot begins 2026-10-05; venue rollout begins 2026-11-02 and finishes 2026-11-30. SSO must pass before broad rollout. They agreed that by 2026-11-30 all six venues will report to one dashboard and at least 95% of priority alerts will appear within 15 minutes. By 2026-12-18 mean investigation time must be at most 42 minutes against the agreed 60-minute baseline. The implementation lead accepted initial rollout-planning assistance. Casey will schedule kickoff by 2026-09-17. These specific agreements resolve the open timeline and success-metric questions in the earlier notes.",
+          "account_id": "0015g00002ABCDeAAH",
+          "sha256": "172565c494ad895dc163b4f56ac440e6fbe8ce1c7bad2143f516af8b5602bfee",
+          "snapshot": {
+            "Id": "a0N5g00001NOTE04AAH",
+            "OpportunityId": "0065g00003OPP001AAH",
+            "NoteDate": "2026-09-10",
+            "NoteType": "Handoff Confirmation",
+            "CreatedById": "0055g00000OWNERAAR",
+            "Subject": "Wall of Sound Handoff Plan Confirmed",
+            "Body": "Scarlet explicitly accepted executive sponsorship and will resolve cross-team escalations. Casey remains technical owner. Scarlet, Casey, and the Wall of Sound implementation lead agreed the rollout plan and planning-support scope: Casey sends identity-team notice by 2026-09-18, providing at least two weeks before SSO validation on 2026-10-02. Corporate pilot begins 2026-10-05; venue rollout begins 2026-11-02 and finishes 2026-11-30. SSO must pass before broad rollout. They agreed that by 2026-11-30 all six venues will report to one dashboard and at least 95% of priority alerts will appear within 15 minutes. By 2026-12-18 mean investigation time must be at most 42 minutes against the agreed 60-minute baseline. The implementation lead accepted initial rollout-planning assistance. Casey will schedule kickoff by 2026-09-17. These specific agreements resolve the open timeline and success-metric questions in the earlier notes."
+          }
+        }
+      ]
+    }
+  ]
+}

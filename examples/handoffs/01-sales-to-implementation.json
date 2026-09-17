@@ -1,0 +1,166 @@
+{
+  "handoff_id": "terrapin-2026-09-16-sales-implementation",
+  "account_id": "0015g00002ABCDeAAH",
+  "account_name": "Terrapin Touring Co.",
+  "effective_at": "2026-09-16T09:00:00-05:00",
+  "recorded_at": "2026-09-16T10:00:00-05:00",
+  "handoff_type": "sales_to_implementation",
+  "from": {
+    "owner_id": "0055g00000OWNERAAR",
+    "owner_name": "Samson Delilah",
+    "team": "Sales"
+  },
+  "to": {
+    "owner_id": "005MOCKIMPLRUBEN",
+    "owner_name": "Ruben Cherise",
+    "team": "Implementation"
+  },
+  "reason": "Closed Won purchase moves into the agreed implementation plan.",
+  "source_ids": [
+    "ownership-september"
+  ],
+  "assessment": {
+    "readiness": "Ready",
+    "baseline": "Ready",
+    "summary": "Agreed owners, rollout dates and measures support implementation. SSO remains a rollout gate; the December investigation-time goal is still due.",
+    "goals": [
+      {
+        "text": "Unify security operations across six venues and provide monthly executive reporting.",
+        "source_ids": [
+          "account",
+          "confirmation"
+        ]
+      }
+    ],
+    "stakeholders": [
+      {
+        "text": "Scarlet Begonia: executive sponsor. Casey Jones: customer technical owner. Jack Straw: procurement contact.",
+        "source_ids": [
+          "confirmation",
+          "contact-scarlet",
+          "contact-casey",
+          "contact-jack"
+        ]
+      }
+    ],
+    "commitments": [
+      {
+        "text": "SSO Oct 2; corporate pilot Oct 5; venues Nov 2–30. By Dec 18, mean investigation time ≤42 minutes from a 60-minute baseline.",
+        "source_ids": [
+          "confirmation"
+        ]
+      }
+    ],
+    "gaps": [],
+    "risks": [
+      {
+        "text": "SSO must pass before broad rollout; identity work needs two weeks’ notice.",
+        "source_ids": [
+          "confirmation"
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "id": "terrapin-kickoff",
+      "text": "Schedule implementation kickoff.",
+      "owner": "Casey Jones (customer)",
+      "due": "2026-09-17",
+      "status": "open",
+      "source_ids": [
+        "confirmation"
+      ]
+    },
+    {
+      "id": "terrapin-identity-notice",
+      "text": "Send the identity-team configuration request.",
+      "owner": "Casey Jones (customer)",
+      "due": "2026-09-18",
+      "status": "open",
+      "source_ids": [
+        "confirmation"
+      ]
+    },
+    {
+      "id": "terrapin-rollout-check",
+      "text": "Verify six venues report to one dashboard and ≥95% of priority alerts arrive within 15 minutes.",
+      "owner": "Ruben Cherise (Implementation)",
+      "due": "2026-11-30",
+      "status": "open",
+      "source_ids": [
+        "confirmation",
+        "ownership-september"
+      ]
+    },
+    {
+      "id": "terrapin-investigation-target",
+      "text": "Verify mean investigation time ≤42 minutes against the agreed 60-minute baseline.",
+      "owner": "Ruben Cherise (Implementation)",
+      "due": "2026-12-18",
+      "status": "open",
+      "source_ids": [
+        "confirmation",
+        "ownership-september"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "ownership-september",
+      "kind": "Fictional internal handoff record",
+      "location": "snapshots/2026-09-16-ownership.json",
+      "record_id": "mock-ownership-2026-09-16",
+      "date": "2026-09-16",
+      "excerpt": "Samson Delilah transfers internal account ownership to Ruben Cherise in Implementation on September 16, 2026."
+    },
+    {
+      "id": "account",
+      "kind": "CRM snapshot",
+      "location": "snapshots/ready/Account.csv",
+      "record_id": "0015g00002ABCDeAAH",
+      "date": "2026-09-16",
+      "excerpt": "Standardize security operations across six acquired venues and improve executive reporting."
+    },
+    {
+      "id": "opportunity",
+      "kind": "CRM snapshot",
+      "location": "snapshots/ready/Opportunity.csv",
+      "record_id": "0065g00003OPP001AAH",
+      "date": "2026-09-16",
+      "excerpt": "Agreed 2026-09-10: identity-team notice by 2026-09-18; SSO validation 2026-10-02; corporate pilot starts 2026-10-05; venue rollout starts 2026-11-02 and completes 2026-11-30."
+    },
+    {
+      "id": "confirmation",
+      "kind": "Sales Notes snapshot",
+      "location": "snapshots/ready/SalesNotes.csv",
+      "record_id": "a0N5g00001NOTE04AAH",
+      "date": "2026-09-10",
+      "excerpt": "Scarlet explicitly accepted executive sponsorship and will resolve cross-team escalations. Casey remains technical owner. Scarlet, Casey, and the Wall of Sound implementation lead agreed the rollout plan and planning-support scope: Casey sends identity-team notice by 2026-09-18, providing at least two weeks before SSO validation on 2026-10-02. Corporate pilot begins 2026-10-05; venue rollout begins 2026-11-02 and finishes 2026-11-30. SSO must pass before broad rollout. They agreed that by 2026-11-30 all six venues will report to one dashboard and at least 95% of priority alerts will appear within 15 minutes. By 2026-12-18 mean investigation time must be at most 42 minutes against the agreed 60-minute baseline. The implementation lead accepted initial rollout-planning assistance. Casey will schedule kickoff by 2026-09-17. These specific agreements resolve the open timeline and success-metric questions in the earlier notes."
+    },
+    {
+      "id": "contact-scarlet",
+      "kind": "CRM snapshot",
+      "location": "snapshots/ready/Contact.csv",
+      "record_id": "0035g00004CON001AAH",
+      "date": "2026-09-16",
+      "excerpt": "Scarlet Begonia — VP, Information Security"
+    },
+    {
+      "id": "contact-casey",
+      "kind": "CRM snapshot",
+      "location": "snapshots/ready/Contact.csv",
+      "record_id": "0035g00004CON002AAH",
+      "date": "2026-09-16",
+      "excerpt": "Casey Jones — Director, Security Engineering"
+    },
+    {
+      "id": "contact-jack",
+      "kind": "CRM snapshot",
+      "location": "snapshots/ready/Contact.csv",
+      "record_id": "0035g00004CON003AAH",
+      "date": "2026-09-16",
+      "excerpt": "Jack Straw — Procurement Manager"
+    }
+  ]
+}

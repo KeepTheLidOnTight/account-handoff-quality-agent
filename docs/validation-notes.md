@@ -1,44 +1,83 @@
 # Logic review and validation
 
-## Changes from the initial prototype
+## What changed with the account deck
+
+Baton now stores a sequence of handoffs for an account and renders one PowerPoint
+from that history. Its opening view shows the latest recorded owner and all
+outstanding actions. Dated sections preserve earlier assessments and facts.
+The legacy sales validator and Markdown examples remain supporting checks.
+
+The history helper validates event structure, IDs, source references, chronology,
+account consistency and owner continuity. It ignores an identical retry, rejects
+changed content under an existing event ID, and carries open actions forward
+when later events omit them. It does not infer transfers from a current owner.
+
+The Terrapin example has two events:
+
+- September 16, 2026: Samson in Sales transfers to Ruben in Implementation.
+  The sales assessment is Ready.
+- December 1, 2026: Ruben transfers to Althea in Customer Success. This simulated
+  future assessment is Needs Review because training and QBR dates are unconfirmed.
+  The sales baseline does not apply to this later transfer.
+
+The December event marks kickoff, identity notice and rollout verification done.
+It omits the December 18 investigation-time action, so that action stays open
+with Ruben. Althea owns the account, not automatically every action. The earlier
+September section remains Ready with its original evidence.
+
+## Original sales fixes retained
 
 | Initial behavior | Revised behavior |
 | --- | --- |
-| Evaluate the first opportunity row. | Select the only Closed Won deal, or require an explicit ID when several exist. Reject non-Closed Won selections. |
-| Two missing fields mean Blocked; any nonblank text passes. | Any missing core prerequisite (sponsor, timeline, success criteria) blocks the handoff. Known placeholder tokens count as unconfirmed. Other preparation gaps require review. |
-| Unresolved contact references silently produce blank stakeholders. | Validate input schemas, unique IDs, record relationships, same-account role links, and role booleans. Stop with an attributable input error when data is unreliable. |
-| JSON omits account context, populated opportunity fields, and source IDs. | Preserve complete selected records and original IDs so the model can compare CRM fields with note evidence. |
-| Final status ownership is unclear. | Treat the validator result as a structured baseline. The skill reviews meaning and can escalate Ready to Needs Review; notes never silently fill CRM fields. |
+| Evaluate the first opportunity row | Select the only Closed Won deal or require an explicit choice. |
+| Two blank fields block; any nonblank value passes | Any missing core prerequisite blocks. Known placeholders count as unconfirmed; other preparation gaps need review. |
+| Invalid contact references produce blank stakeholders | Stop on invalid schemas, IDs, relationships, account links or role booleans. |
+| Omit populated fields and source IDs | Preserve complete selected records and references for evidence review. |
+| Unclear final readiness ownership | Treat Python's sales result as a structured baseline; contextual review can escalate Ready to Needs Review. |
 
-The core-field policy is a deliberate POC business assumption. It is more
-conservative than the original count-of-blanks rule and must be agreed with the
-receiving team before real use.
+The sponsor/timeline/success-criteria policy is a prototype business assumption.
+It applies to initial sales handoffs, not automatically to later internal transfers.
 
-## Verification performed
+## Verification evidence
 
-- **27 automated CLI tests passed**, including parameterized cases for
-  placeholders, missing columns, duplicate IDs, broken references, selection,
-  readiness, source preservation, and exact attribution of stakeholder issues.
-- Default fixture: **Blocked**, with the three intended core gaps.
-- Complete fixture: structured baseline **Ready**.
-- Missing-next-step fixture: **Needs Review**, even though notes contain an action.
-- Conflicting-notes fixture: structured baseline **Ready**, with both conflicting
-  source records retained for review.
-- Invalid-link fixture: **input error, exit code 2**, with no assessment.
-- An independent agent used the revised skill on two unnamed input exports
-  without seeing the scenario guide or expected outcomes. It assessed the
-  complete export as **Ready** and the conflicting export as **Needs Review**,
-  citing the stale CRM timeline and the explicit rescheduling note.
+- **All 56 Python tests passed: 27 sales-validator tests and 29 history tests.**
+  The history checks include baseline type and no optimistic sales override,
+  evidence dates at or before recording, stored snapshots, retries/conflicts,
+  event order, owner continuity, and action carry-forward/closure.
+- The original **27 sales-validator tests** cover selection, placeholders,
+  required fields, malformed input, record links and evidence preservation.
+- Five sales fixtures cover Blocked, Ready, Needs Review, contradictory notes,
+  and an intentional input error. See [scenarios](scenarios.md).
+- A separate agent reviewed two unnamed sales exports without the expected
+  outcomes. It returned Ready for the complete case and Needs Review for the
+  conflict, citing both CRM and the schedule-change note. This review predates
+  the ongoing deck feature and does not validate later-transfer judgments.
+- A new assessment-only check used raw December and September ownership snapshots
+  plus the ready sales CSVs, without the prepared events, history or deck. It
+  returned Needs Review with no sales baseline, Althea as the CS account owner,
+  and the three supported open actions. It retained Ruben's December 18 action
+  and did not claim that target was achieved. It also identified the missing
+  recording timestamp in the raw inputs. This is one small behavioral check.
+- The full suite passed under Python 3.9+: 56 tests in 13.759 seconds.
+  Run it with `python3 -B -m unittest discover -s tests -v` on a supported
+  Python version.
+- Deck checks passed: the one-event deck has six slides, the two-event deck has
+  nine; a repeat rebuild kept its slide and notes text identical; the September
+  history remained unchanged; each handoff appeared once; and the carried action
+  stayed visible. The final deck passed package, layout, font and import checks,
+  and all nine rendered slides were reviewed for readability.
 
-All named accounts, contacts, deals, and notes are fictional.
-Tests use disposable input copies. The revised project does not change
-source records during an assessment.
+## Limits of these checks
 
-## What these checks do not prove
+Tests validate specific code behavior, not source truth, authorization or broad
+model accuracy. The two-export review is a small semantic check. The saved
+history is a local file, not a tamper-proof audit system. The helper expects one
+writer at a time; concurrent writes and reviewed corrections need further work.
 
-The automated tests validate deterministic behavior, not the truth or adequacy of
-arbitrary customer statements. The independent review is a small behavioral
-check, not a large model evaluation. Production would need more labeled cases,
-organization-specific business rules, checks of unusual data formats, and human
-review of unresolved commitments and contradictions. No time-saving or revenue
-impact has been measured.
+Rendering rebuilds from stored history rather than editing an old PPTX. It
+preserves earlier content, not necessarily identical slide positions or file
+bytes. Manual PowerPoint edits do not update the saved records. If rendering
+fails after an event is saved, that distinction must be reported.
+
+All examples are fictional, and the later transfer is a simulated future case.
+No time saving, revenue impact or real customer outcome has been measured.

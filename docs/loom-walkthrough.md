@@ -1,121 +1,113 @@
 # Loom walkthrough
 
-Aim for about **4 minutes 30 seconds**. Apollo allows a recording of no more
-than five minutes. Record your own voice and screen; a camera bubble is optional.
-This is a recording plan, not a finished Loom.
+Aim for **4 minutes 30 seconds**, with a hard limit of five minutes. This is your
+recording plan, not a finished Loom. Record your voice and screen; the camera
+bubble is optional. The interview date is still TBD.
 
-## Set up before recording
+## Before recording
 
-Open the project in your coding agent. Have these ready to show at a readable zoom:
+Open these at a readable zoom:
 
-1. `docs/demo-slide.pptx` or the screen-friendly `docs/demo-slide.png`.
-2. `SKILL.md` and the five files in `data/`.
-3. `examples/blocked-validation.json` and `examples/blocked-assessment.md`.
-4. `examples/conflicting-notes-validation.json` and `examples/conflicting-notes-assessment.md`.
-5. `docs/validation-notes.md`.
+1. [The project summary slide](demo-slide.pptx).
+2. [Terrapin's account deck](../examples/terrapin-account-deck.pptx).
+3. [SKILL.md](../SKILL.md), especially the two readiness policies.
+4. [Saved handoff history](../examples/handoffs/terrapin-history.json).
+5. [Validation notes](validation-notes.md).
 
-Close unrelated windows and notifications. Rehearse once with a timer. Use the
-recording controls to pause while switching files if needed.
+The deck is the main demonstration. Avoid touring every file. Close unrelated
+windows and notifications, then rehearse once with a timer. Find the latest
+overview, outstanding actions, and both dated sections before you start.
 
-You can show saved outputs to keep the recording short. Say they are saved runs.
-If you want a fresh run, paste the prompts below into your coding agent before
-recording; you don't need to type terminal commands yourself. Keep the responses
-available on screen. Don't present a saved assessment as a live model run.
+If you want a fresh rebuild without typing terminal commands, ask your coding agent:
 
-**Default example prompt**
+> Follow SKILL.md. Read examples/handoffs/terrapin-history.json and rebuild the
+> Terrapin account deck using the existing history. Show the latest owner,
+> outstanding actions, and both dated handoffs. Explain which action carried
+> forward. Use the demo rendering option to keep the fictional and simulated
+> labels visible. Do not change source records or add events.
 
-> Follow SKILL.md. Run the validator on the default data folder and assess the
-> Closed Won opportunity. Show the validator result, then the full handoff brief
-> with source references. Do not edit any files.
+Run that before recording so you can check the result. Call it a saved example
+or prepared rebuild. Do not present it as a live model assessment. The PPTX
+renderer needs the environment described in the README, not Python alone.
 
-**Conflict example prompt**
+## 0:00-0:35 - The problem
 
-> Follow SKILL.md using scenarios/conflicting-notes as the data folder. Run the
-> validator, compare the CRM timeline with the notes, and return the handoff
-> assessment. Explain any difference between the validator result and the final
-> result. Do not edit any files.
+**Show:** the project summary slide.
 
-## What to show and say
+I built Baton because every time an account changes teams, the next person has
+to rebuild the story. What did the customer want? What did we promise? What's
+still open? Baton keeps one account deck with the current context at the front
+and dated handoffs behind it. I want to reduce preparation and dropped
+commitments. I haven't measured that impact yet.
 
-### 0:00-0:35 — The problem
+## 0:35-1:20 - The first handoff
 
-**Show:** the summary slide.
+**Show:** Terrapin's September 16 Sales to Implementation section.
 
-I built Baton, a skill for the transition from sales to
-implementation or customer success. The problem is that the receiving team can
-have a closed deal without a clear picture of what was promised or what's still
-missing. This reviews CRM records and sales notes together and produces a brief
-the team can use before kickoff. The goal is less preparation and fewer missed
-expectations. I haven't measured that impact yet.
+This is a fictional customer. In September, Samson in Sales hands the account
+to Ruben in Implementation. The supplied CRM records and notes support Ready:
+there's a sponsor, an agreed plan, and measurable outcomes. Ready means the
+handoff evidence meets this policy. It doesn't mean the rollout has happened.
+This section records what the team knew at that point, including an
+investigation-time target due December 18.
 
-### 0:35-1:10 — How it works
+## 1:20-2:25 - The deck grows
 
-**Show:** the data folder, then the workflow and policy in SKILL.md.
+**Show:** the December 1 section, then the current overview and action list.
 
-The demo uses five Salesforce-style CSVs for a fictional customer, Terrapin
-Touring. Python selects the Closed Won deal, joins its records, and checks the
-required fields. The skill then has the model read the notes and compare them
-with the CRM. I used CSVs so the inputs are repeatable and the demo doesn't need
-credentials. This version only reads data. It doesn't update Salesforce.
+The second transfer is a simulated future case. Implementation hands the account
+to Althea in Customer Success. The front now shows Althea and Needs Review,
+because training and the first QBR still need confirmed dates. The earlier
+September section still says Ready. It hasn't been rewritten using later facts.
 
-### 1:10-2:00 — The incomplete handoff
+Here's the detail I care most about: the December 18 investigation-time check
+is still open, even though the new transfer doesn't mention that action. It
+carries forward with Ruben as its action owner. Althea owns the account now,
+but that alone doesn't reassign Ruben's work. A recorded update needs evidence.
 
-**Show:** the saved default JSON result, then the missing information and
-commitments sections in blocked-assessment.md.
+## 2:25-3:10 - How it works
 
-Here's a saved run of the incomplete handoff. The sponsor, implementation
-timeline, and success criteria are blank, so the validator returns Blocked.
-The notes still help: Casey owns the technical rollout, SSO is required before
-broad rollout, and the identity team needs two weeks' notice. But an early-October
-preference isn't an agreed timeline, and Scarlet being the primary decision-maker
-doesn't automatically make her the sponsor. The brief keeps those distinctions
-and cites where each finding came from.
+**Show:** the history file briefly, then the workflow in SKILL.md.
 
-### 2:00-3:00 — Why the model is useful
+The initial handoff uses five Salesforce-style CSVs. Later transfers also need
+explicit owner and team metadata plus operational notes. Python checks the data
+and protects the history. The model reads the evidence and explains gaps.
+The renderer rebuilds the deck from the stored events. It doesn't use an old
+PowerPoint as the source of truth. Repeating the same event doesn't add another
+section, and a changed event with the same ID is rejected.
 
-**Show:** the conflict JSON's Ready result, then the conflicting-notes assessment
-and its two source references.
-
-This second saved example has all the structured fields filled, so Python
-returns Ready. But CRM still lists an October 5 pilot. A note records an approved
-move to November 2 and says the remaining milestones need replanning. The skill
-changes the final assessment to Needs Review and cites both sources. That's the
-part the model adds: it can explain why populated fields still leave the receiving
-team with an unreliable plan. A person needs to reconcile that plan before
-the handoff is relied on.
-
-### 3:00-3:45 — What AI got wrong and how it was checked
+## 3:10-3:50 - What AI got wrong
 
 **Show:** validation-notes.md.
 
-I used AI to draft the project and review it. The first version had real
-problems: it picked the first opportunity, let TBD pass as a completed field,
-and could hide broken contact links. Those behaviors were corrected and tested.
-There are now 27 automated tests for the script, plus five demo scenarios.
-An independent agent also assessed two cases without their expected answers.
-That's useful evidence for this prototype, but it isn't a large evaluation of
-model accuracy.
+I used AI to draft the project and then review it. The first sales validator
+selected the first opportunity, accepted TBD, and could hide a broken contact
+link. Those behaviors were corrected and tested. All 56 Python tests pass.
+The history checks also cover
+ordering, owner continuity, duplicate events and carried actions. The automated
+tests check code behavior. A separate agent's two-case review gives a small
+check of evidence interpretation, not a guarantee that the model is accurate.
 
-### 3:45-4:30 — Assumptions and production work
+## 3:50-4:30 - Scope and production work
 
-**Show:** the policy or one-pager, then finish on the summary slide.
+**Show:** the summary slide or the account deck's current overview.
 
-The readiness rules are assumptions for this exercise. I'd agree on them with
-the receiving team before using this in production. I'd also add a live connector
-with limited permissions, better operational logging, and a larger evaluation
-set with real handoff edge cases. Any CRM updates would need human review.
-The demo shows the decision process: identify the gaps, recover useful context,
-and make it clear what someone still needs to confirm.
+This runs when someone supplies a handoff. It doesn't detect CRM ownership
+changes or write anything back. For production, I'd connect to actual ownership
+history, agree on each receiving team's rules, and add access controls and a
+reviewed correction process. I'd also test real handoffs for missed gaps and
+false alarms. The main idea is that a team change updates the current view
+without losing what earlier teams knew or leaving unfinished work behind.
 
 ## After recording
 
-- Watch the recording once. Check the screen is readable and your audio is clear.
-- Keep the final video at or below five minutes. Trim waiting and repeated explanations.
-- Check the link's viewing permissions so the hiring team can open it.
-- Add the Loom URL to the README. A script or a local video without an accessible
-  link does not complete the recorded-demo requirement.
-- Send the public repo and supporting materials to the recruiter at least 24 hours
-  before the interview. The interview date is currently TBD.
+- Watch the full recording. Confirm readable screens, clear audio, and a duration
+  of five minutes or less. Trim waiting and repeated explanations.
+- Check the hiring team can open the link. Add the Loom URL to the public repo's
+  README. A walkthrough document alone does not fulfill the recording option.
+- Publish the updated project package and check the public files match the demo.
+- Submit at least 24 hours before the interview once its date is set. No recruiter
+  message has been sent.
 
 If you choose a live demo instead, use the same sequence and keep the saved
-outputs available as a clearly labeled fallback.
+account deck available as a clearly labeled fallback.

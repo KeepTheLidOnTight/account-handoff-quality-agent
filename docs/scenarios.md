@@ -1,24 +1,53 @@
 # Demo scenarios
 
-Every company, person, address, domain, deal, and note in these datasets is fictional. No real customer records or personal data are included. IDs are mock relationship keys; these fixtures are not represented as Salesforce-import-ready. The `.example` domain is reserved for examples.
+## Main demo: one account, two handoffs
 
-Each folder contains a complete, isolated set of the five CSVs. IDs intentionally repeat between folders so a single changed condition is easy to compare. Do not combine the folders into one input directory.
+Open [Terrapin's account deck](../examples/terrapin-account-deck.pptx).
+The [saved history](../examples/handoffs/terrapin-history.json) contains both
+events and their evidence. The later event is a simulated future transfer.
 
-The fictional customer is **Terrapin Touring Co.**, an entertainment and venue-operations company buying **Wall of Sound Security** for its corporate environment and six acquired venues. Scarlet Begonia is the primary decision-maker; Casey Jones owns technical rollout; Jack Straw handles procurement.
-
-| Input folder | Purpose | Expected validator baseline | Expected final assessment |
+| Date | Internal transfer | Assessment | What to look for |
 | --- | --- | --- | --- |
-| `data` | Main demo: sponsor, timeline, and success criteria are blank. Notes contain useful goals and dependencies but do not establish complete agreements. | Blocked | Blocked |
-| `scenarios/ready` | Confirmed sponsor, dated rollout plan, feasible identity-team notice, measurable outcomes, and one primary contact. | Ready | Ready after evidence review |
-| `scenarios/needs-review` | Identical to Ready except the CRM next step is blank. Notes still describe an action, exposing a structured-field gap. | Needs Review | Needs Review until CRM correction |
-| `scenarios/conflicting-notes` | Complete structured fields, but a newer note supersedes the corporate pilot date and requires remaining milestones to be re-planned. | Ready | Needs Review: evidence conflict, with both sources cited |
-| `scenarios/invalid-link` | The technical-buyer role references `003TerrapinMissing`, which has no Contact row. | Input error; exit code 2 | No assessment; repair the input first |
+| September 16, 2026 | Samson Delilah, Sales, to Ruben Cherise, Implementation | Ready under the sales policy | Agreed sponsor, timeline and measures support handoff. Implementation work remains to be completed. |
+| December 1, 2026 | Ruben Cherise, Implementation, to Althea Cassidy, Customer Success | Needs Review under the generic transfer policy | Training and QBR dates are unconfirmed. The current overview changes, while the September section keeps its original assessment. |
 
-## Run the fixtures
+Three actions in the first event become done in the second. The investigation-time
+check due December 18 is absent from the second event and therefore carries
+forward as open, with Ruben still responsible. The second event adds training
+and QBR actions for Althea with unconfirmed dates. Customer contacts Scarlet,
+Casey and Jack are distinct from those internal account owners.
 
-Run from the project folder with Python 3:
+View the saved history with:
 
-```bash
+```sh
+python3 scripts/manage_handoffs.py view --history examples/handoffs/terrapin-history.json
+```
+
+Rebuild with the renderer and dependencies described in the [README](../README.md):
+
+```sh
+node scripts/build_deck.mjs --history examples/handoffs/terrapin-history.json --output account-deck.pptx --demo
+```
+
+An identical event retry is a no-op. Conflicting content under an existing ID,
+out-of-order events, and a broken owner chain require corrected input. Use a
+working copy for experiments; don't invent transfers to bypass a rejected event.
+
+## Supporting sales-validation cases
+
+These five isolated CSV folders exercise the original Closed Won profile.
+The Markdown assessments are debugging examples, not the main product output.
+Do not combine folders: IDs intentionally repeat to make changes easy to compare.
+
+| Input folder | Purpose | Structured result | Contextual result |
+| --- | --- | --- | --- |
+| `data` | Sponsor, timeline and success criteria are blank | Blocked | Blocked; notes provide context without filling CRM fields |
+| `scenarios/ready` | Required fields, stakeholders and agreements are complete | Ready | Ready after evidence review |
+| `scenarios/needs-review` | CRM next step is blank, although a note mentions an action | Needs Review | Needs Review until the structured gap is resolved |
+| `scenarios/conflicting-notes` | CRM pilot date is October 5; an approved note moves it to November 2 and requires replanning | Ready | Needs Review, citing the conflict |
+| `scenarios/invalid-link` | Technical-buyer role references a missing contact | Input error, exit code 2 | No assessment until input is repaired |
+
+```sh
 python3 scripts/analyze_handoff.py
 python3 scripts/analyze_handoff.py --data-dir scenarios/ready
 python3 scripts/analyze_handoff.py --data-dir scenarios/needs-review
@@ -26,6 +55,11 @@ python3 scripts/analyze_handoff.py --data-dir scenarios/conflicting-notes
 python3 scripts/analyze_handoff.py --data-dir scenarios/invalid-link
 ```
 
-The validator checks structured completeness and relationship integrity. It does not interpret note meaning or detect contradictory dates. `Ready` from the validator is a baseline for the skill's evidence review, not an approval to begin implementation. The conflicting-notes case deliberately demonstrates that division of work.
+Blocked and Needs Review are valid analysis results. An input error is an
+execution failure that stops assessment. Ready from the sales script is only
+a baseline for contextual review, not approval to start implementation.
 
-An assessment with Blocked or Needs Review is a successful analysis, not an execution failure. The invalid-link fixture intentionally fails before assessment so an unreliable join cannot look like a healthy handoff.
+All companies, people, dates, notes and results are fictional. There are no real
+customer records or personal data. IDs are mock relationship keys, not a claim
+that these fixtures are Salesforce-import-ready. The `.example` domains are
+reserved for examples.
