@@ -14,10 +14,9 @@ Open these at a readable zoom:
 4. [Saved handoff history](../examples/handoffs/terrapin-history.json).
 5. [Validation notes](validation-notes.md).
 
-The deck is the main demonstration. It has five slides: current state, current
-context and actions, handoff history, then one page for each dated handoff.
-Avoid touring every file. Close unrelated windows and notifications, then
-rehearse once with a timer.
+The deck is the main demonstration. It has three slides: a current account
+summary, open action items, and dated handoff data. Avoid touring every file.
+Close unrelated windows and notifications, then rehearse once with a timer.
 
 If you want a fresh rebuild without typing terminal commands, ask your coding agent:
 
@@ -31,7 +30,7 @@ Run that before recording so you can check the result. Call it a saved example
 or prepared rebuild. Do not present it as a live model assessment. The PPTX
 renderer needs the environment described in the README, not Python alone.
 
-## 0:00-0:40 - The problem
+## 0:00-0:40 - The problem and current state
 
 **Show:** slide 1, the current account record.
 
@@ -44,41 +43,26 @@ commitments. I haven't measured that impact yet.
 The front makes the current situation legible in a few seconds. Althea owns the
 account, the handoff needs review, and the December 18 goal remains open.
 
-## 0:40-1:20 - The current situation
+## 0:40-1:20 - Open work
 
-**Show:** slide 2, then slide 3.
+**Show:** slide 2.
 
-The second slide separates account ownership from action ownership. Althea owns
-Customer Success, but Ruben still owns the investigation-time check because no
-recorded update reassigned it. The history slide shows why: the account moved
-twice, and each handoff keeps its original readiness and evidence.
+The open-action slide separates account ownership from action ownership. Althea
+owns Customer Success, but Ruben still owns the December 18 investigation-time
+check because no recorded update reassigned it. Althea owns the two date-confirmation
+follow-ups. The deck shows the text, owner, and due date for each item.
 
-## 1:20-2:00 - The first handoff
+## 1:20-2:20 - Dates and source data
 
-**Show:** slide 4, the September 16 record.
+**Show:** slide 3.
 
-This is a fictional customer. In September, Samson in Sales hands the account
-to Ruben in Implementation. The supplied CRM records and notes support Ready:
-there's a sponsor, an agreed plan, and measurable outcomes. Ready means the
-handoff evidence meets this policy. It doesn't mean the rollout has happened.
-This section records what the team knew at that point, including an
-investigation-time target due December 18.
+This is a fictional customer. The timeline shows the September 16 Sales to
+Implementation handoff and the December 1 transfer to Customer Success. The
+source data is concrete: all six venues report to one dashboard, 96% of priority
+alerts arrive within 15 minutes, and the 42-minute investigation target remains
+due December 18. Training and the first QBR date still need confirmation.
 
-## 2:00-2:50 - The deck grows
-
-**Show:** slide 5, the December 1 record, then return to slide 1.
-
-The second transfer is a simulated future case. Implementation hands the account
-to Althea in Customer Success. The front now shows Althea and Needs Review,
-because training and the first QBR still need confirmed dates. The earlier
-September section still says Ready. It hasn't been rewritten using later facts.
-
-Here's the detail I care most about: the December 18 investigation-time check
-is still open, even though the new transfer doesn't mention that action. It
-carries forward with Ruben as its action owner. Althea owns the account now,
-but that alone doesn't reassign Ruben's work. A recorded update needs evidence.
-
-## 2:50-3:35 - How it works
+## 2:20-3:05 - How it works
 
 **Show:** the history file briefly, then the workflow in SKILL.md.
 
@@ -89,7 +73,7 @@ The renderer rebuilds the deck from the stored events. It doesn't use an old
 PowerPoint as the source of truth. Repeating the same event doesn't add another
 section, and a changed event with the same ID is rejected.
 
-## 3:35-4:15 - What AI got wrong
+## 3:05-3:50 - What AI got wrong
 
 **Show:** validation-notes.md.
 
@@ -101,7 +85,7 @@ ordering, owner continuity, duplicate events and carried actions. The automated
 tests check code behavior. A separate agent's two-case review gives a small
 check of evidence interpretation, not a guarantee that the model is accurate.
 
-## 4:15-4:30 - Scope and production work
+## 3:50-4:15 - Scope and production work
 
 **Show:** the summary slide or the account deck's current overview.
 
