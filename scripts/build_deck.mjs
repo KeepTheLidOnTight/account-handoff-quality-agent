@@ -115,35 +115,26 @@ async function main() {
   const openActions = view.current.open_actions || [];
   const actionCtx = context(openActions.flatMap(a => a.sources));
   const actionNotes = `Outstanding actions as of ${view.current.as_of}. These are the most recent recorded action states across every stored handoff. An action stays open until a later event explicitly changes its status.\n\n${openActions.map(a => `Action ${a.id}\nOriginating handoff: ${a.event_id}\nLast update: ${a.updated_event_id}\n${a.text}`).join('\n\n')}\n\n${actionCtx.notes}`;
-  const cover = slide(view.account.name, 'Account handoff summary', currentNotes);
-  addText(cover, view.current.readiness, { left: 70, top: 240, width: 490, height: 65 }, { typeface: 'Inter Medium', fontSize: 50, color: LIME });
-  section(cover, 'Current owner', owner(view.current.owner), { left: 70, top: 340, width: 440, height: 100 });
-  section(cover, 'Latest transfer', `${last.from.team} to ${last.to.team}\n${last.effective_at.slice(0, 10)}${currentCtx.refs(last.source_ids)}`, { left: 70, top: 485, width: 440, height: 100 });
-  section(cover, 'Source data', `${last.assessment.summary}${currentCtx.refs(summarySources(last))}`, { left: 610, top: 240, width: 510, height: 155 });
-  section(cover, 'Customer context', `${itemText(last.assessment.goals, currentCtx, last.sources)}\n\n${itemText(last.assessment.stakeholders, currentCtx, last.sources)}`, { left: 610, top: 445, width: 510, height: 165 });
+  const cover = slide(view.account.name, 'Account handoff brief', currentNotes);
+  addText(cover, view.current.readiness, { left: 70, top: 220, width: 490, height: 65 }, { typeface: 'Inter Medium', fontSize: 50, color: '#F7C96A' });
+  section(cover, 'Current owner', owner(view.current.owner), { left: 70, top: 325, width: 440, height: 82 });
+  section(cover, 'Business goal', 'One security view across six venues and monthly executive reporting.' + currentCtx.refs(['ownership-december', 'account']), { left: 70, top: 450, width: 440, height: 110 });
+  section(cover, 'What the data says', 'Six of six venues report to one dashboard. 96% of priority alerts arrive within 15 minutes. The 42-minute investigation target is still due Dec 18.' + currentCtx.refs(summarySources(last)), { left: 610, top: 220, width: 510, height: 170 });
+  section(cover, 'Recommendation', 'Keep this handoff open. Althea should confirm the training and first QBR dates. Ruben should validate the 42-minute investigation target by Dec 18.' + currentCtx.refs(['ownership-december', 'confirmation']), { left: 610, top: 445, width: 510, height: 150 });
 
-  const current = slide('Open action items', 'Work that still needs an owner or date', actionNotes, true);
+  const current = slide('Recommended next steps', 'What needs to happen next', actionNotes, true);
+  addText(current, 'Do not close the handoff until the two customer dates and Dec 18 measurement are recorded.', { left: 70, top: 190, width: 1030, height: 42 }, { typeface: 'Inter Medium', fontSize: 21, color: INK });
   if (!openActions.length) {
-    addText(current, 'No open actions.', { left: 70, top: 250, width: 1045, height: 60 }, { fontSize: 24, color: INK });
+    addText(current, 'No open actions.', { left: 70, top: 280, width: 1045, height: 60 }, { fontSize: 24, color: INK });
   } else {
     openActions.forEach((action, index) => {
-      const top = 230 + index * 135;
-      addText(current, `${index + 1}`, { left: 70, top, width: 42, height: 42 }, { typeface: 'Inter Medium', fontSize: 28, color: '#4A7A1D' });
-      addText(current, action.text + actionCtx.refs(action.source_ids, action.sources), { left: 135, top, width: 650, height: 70 }, { typeface: 'Inter Medium', fontSize: 22, color: INK });
-      addText(current, `${action.owner}\nDue: ${action.due || 'Not Confirmed'}`, { left: 830, top: top + 2, width: 290, height: 62 }, { fontSize: 18, color: INK });
+      const top = 275 + index * 125;
+      addText(current, `PRIORITY ${index + 1}`, { left: 70, top, width: 140, height: 28 }, { typeface: 'Inter Medium', fontSize: 15, color: '#4A7A1D' });
+      addText(current, action.text + actionCtx.refs(action.source_ids, action.sources), { left: 70, top: top + 38, width: 650, height: 62 }, { typeface: 'Inter Medium', fontSize: 21, color: INK });
+      addText(current, `Owner: ${action.owner}\nDue: ${action.due || 'Confirm date'}`, { left: 805, top: top + 38, width: 315, height: 62 }, { fontSize: 17, color: INK });
     });
   }
 
-  const historyNotes = `Handoff timeline from validated stored history. Each row is a dated immutable event.\n\n${view.events.map(e => `${e.handoff_id}\n${e.effective_at}\n${e.from.owner_name} (${e.from.team}) to ${e.to.owner_name} (${e.to.team})\n${e.assessment.readiness}`).join('\n\n')}`;
-  const history = slide('Dates and handoff data', 'Recorded milestones', historyNotes);
-  view.events.forEach((event, index) => {
-    const ctx = context(event.sources);
-    const top = 245 + index * 170;
-    addText(history, event.effective_at.slice(0, 10), { left: 70, top, width: 190, height: 32 }, { typeface: 'Inter Medium', fontSize: 24, color: LIME });
-    addText(history, `${event.from.team} to ${event.to.team}`, { left: 280, top, width: 440, height: 32 }, { typeface: 'Inter Medium', fontSize: 25, color: WHITE });
-    addText(history, event.assessment.readiness, { left: 900, top, width: 220, height: 32 }, { typeface: 'Inter Medium', fontSize: 25, color: event.assessment.readiness === 'Ready' ? LIME : '#F7C96A', alignment: 'right' });
-    addText(history, `${event.from.owner_name} hands the account to ${event.to.owner_name}. ${event.assessment.summary}${ctx.refs(summarySources(event))}`, { left: 280, top: top + 48, width: 830, height: 82 }, { fontSize: 20, color: WHITE });
-  });
   /* Detailed historical slides are intentionally omitted. The deck stays a
      digestible handoff brief: summary, open work, and dated source data. */
   for (const event of []) {
