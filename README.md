@@ -1,76 +1,71 @@
 # Baton
 
-Baton keeps one account handoff deck current as an account moves between internal
-owners or teams. The opening pages show the current owner, context and unfinished
-work. Each transfer adds one dated page, so the original handoff record stays
-easy to find.
+Baton is a small handoff-quality prototype for GTM teams. It takes structured
+Salesforce-style exports and notes, checks a Closed Won handoff, then produces
+one account deck that keeps the customer context and unfinished work together.
 
-Open the [example deck](examples/terrapin-account-deck.pptx). It follows a
-fictional account from Sales to Implementation, then Customer Success.
+The [example deck](examples/terrapin-account-deck.pptx) is the main output. It
+follows a fictional account from Sales to Implementation, then Customer Success.
 
-## Start here
+## What it solves
 
-Ask your coding agent to follow [SKILL.md](SKILL.md) and rebuild the Terrapin
-deck from the history in `examples/handoffs`. It will review the account, show
-the current owner and open actions, and preserve both dated handoffs.
+When ownership changes, the receiving person often has to reconstruct what the
+customer expects and what is still open. Baton preserves that context as a dated
+handoff record instead of relying on a current owner field or an edited slide.
 
-The project has two small helpers:
+## How it works
+
+```text
+CSV exports + notes → Python checks → skill assessment → saved handoff history → account deck
+```
+
+The CSVs represent five familiar CRM objects: Account, Opportunity, Contact,
+Opportunity Contact Role, and Sales Notes. Python handles repeatable checks and
+history safety; the skill reviews context and evidence; the deck renderer turns
+the saved history into a presentation.
+
+## Run the example
 
 ```sh
 python3 scripts/analyze_handoff.py
 python3 scripts/manage_handoffs.py view --history examples/handoffs/terrapin-history.json
 ```
 
-The first checks a Closed Won sales handoff. The second reads the saved history
-and derives the current owner and open work. To record a new, prepared transfer:
+To rebuild the supplied deck:
 
 ```sh
-python3 scripts/manage_handoffs.py add --history account-history.json --event new-handoff.json
+node scripts/build_deck.mjs --history examples/handoffs/terrapin-history.json --output account-deck.pptx --demo
 ```
 
-Then rebuild the deck:
+The validator and history helper use Python with no additional packages. Deck
+generation also needs Node.js and `@oai/artifact-tool`. Reviewers can open the
+included deck directly.
 
-```sh
-node scripts/build_deck.mjs --history account-history.json --output account-deck.pptx --demo
-```
+## Scope
 
-Deck creation needs Node.js and `@oai/artifact-tool`; the saved example deck is
-ready to open without any setup.
+This is a local, CSV-backed POC. It does not monitor CRM ownership changes or
+write to CRM. Each transfer is supplied explicitly, including the previous and
+new owners, teams, and effective date.
 
-## Optional Apollo connection
+Apollo is a **future enhancement**: a production version could retrieve
+read-only account context or ownership history using least-privilege access. It
+is deliberately not part of this demo, which keeps the data flow clear and
+avoids real credentials or customer data.
 
-Baton can retrieve a **read-only current account snapshot** from Apollo. It
-checks the key, searches your saved Apollo accounts, and fetches the account you
-choose. It does not write to Apollo, detect a historical transfer, or add one to
-Baton automatically.
+## Assignment material
 
-Create a scoped Apollo API key with access to account search and account view,
-then keep it in your local environment as `APOLLO_API_KEY`. Do not put the key or
-real account snapshots in this public repository.
+- [One-pager](docs/one-pager.pdf)
+- [Single summary slide](docs/demo-slide.pptx)
+- [Loom walkthrough](docs/loom-walkthrough.md)
+- [Interview prep](docs/interview-prep.md)
+- [Submission checklist](docs/submission-checklist.md)
 
-```sh
-python3 scripts/apollo_snapshot.py health
-python3 scripts/apollo_snapshot.py search --name "Account name"
-python3 scripts/apollo_snapshot.py snapshot --account-id APOLLO_ACCOUNT_ID --out apollo/account.json
-```
+Record a Loom under five minutes and add its link here before submitting.
 
-Use the saved snapshot as current-account evidence when preparing a transfer.
-The prior owner, new owner and effective date still need to be supplied and
-reviewed explicitly. See [Apollo integration notes](references/apollo-integration.md).
-
-## Demo material
-
-The [one-pager](docs/one-pager.pdf), [single summary slide](docs/demo-slide.pptx),
-[Loom walkthrough](docs/loom-walkthrough.md) and
-[interview prep](docs/interview-prep.md) are ready for the assignment. Record a
-Loom under five minutes, then add its link here before submitting.
-
-## Check it
+## Verify
 
 ```sh
 python3 -B -m unittest discover -s tests -v
 ```
 
-All included records are fictional. See [the handoff schema](references/handoff-schema.md)
-for the event format and [deck guidance](references/deck-output.md) for what the
-deck preserves.
+All names, records, dates, and results in this repository are fictional.

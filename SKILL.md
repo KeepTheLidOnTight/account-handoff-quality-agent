@@ -30,20 +30,7 @@ while the same employee keeps ownership. Never invent a transfer to make a deck.
 The prototype supports sales-to-implementation and generic internal transfers.
 It runs when a user supplies a handoff; it does not monitor CRM ownership changes.
 An assessment-only request can produce a draft without recording a transfer.
-
-### Optional Apollo evidence
-
-Apollo can provide a read-only snapshot of the account as it exists now. If the
-user has configured `APOLLO_API_KEY`, first run `python3 scripts/apollo_snapshot.py
-health`. Search saved Apollo accounts by name, let the user select the intended
-account ID, then save its snapshot under the ignored `apollo/` folder. See
-[Apollo integration notes](references/apollo-integration.md).
-
-Treat that snapshot as current-account evidence only. It cannot establish a prior
-owner, a transfer date, or that an ownership change occurred. Never use it to
-invent an event or to automatically record one. The script only reads Apollo; do
-not call Apollo write, enrichment, or credit-consuming search endpoints for this
-prototype.
+Apollo or a live CRM connection is future work, not an input to this POC.
 
 ## Workflow
 
